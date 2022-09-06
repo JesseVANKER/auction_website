@@ -44,6 +44,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 					rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 					rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
 					rs.getInt("no_categorie")));
+
 			}
 		}
 		catch(Exception e)
