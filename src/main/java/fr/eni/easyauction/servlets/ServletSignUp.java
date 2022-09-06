@@ -108,20 +108,20 @@ public class ServletSignUp extends HttpServlet {
 				}
 				else
 				{
-					//J'ajoute le repas
-					RepasManager repasManager = new RepasManager();
-					try {
-						repasManager.ajouterRepas(date, heure, Arrays.asList(repas.split(",")));
-						//Si tout se passe bien, je vais vers la page de consultation:
-						RequestDispatcher rd = request.getRequestDispatcher("/repas");
-						rd.forward(request, response);
-					} catch (BusinessException e) {
-						//Sinon je retourne à la page d'ajout pour indiquer les problèmes:
-						e.printStackTrace();
-						request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
-						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ajout.jsp");
-						rd.forward(request, response);
-					}
+//					//J'ajoute le repas
+//					RepasManager repasManager = new RepasManager();
+//					try {
+//						repasManager.ajouterRepas(date, heure, Arrays.asList(repas.split(",")));
+//						//Si tout se passe bien, je vais vers la page de consultation:
+//						RequestDispatcher rd = request.getRequestDispatcher("/repas");
+//						rd.forward(request, response);
+//					} catch (BusinessException e) {
+//						//Sinon je retourne à la page d'ajout pour indiquer les problèmes:
+//						e.printStackTrace();
+//						request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
+//						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ajout.jsp");
+//						rd.forward(request, response);
+//					}
 					
 				}
 		
