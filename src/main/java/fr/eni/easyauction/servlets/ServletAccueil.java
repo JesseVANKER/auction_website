@@ -33,7 +33,7 @@ public class ServletAccueil extends HttpServlet {
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 
 		Utilisateur user = new Utilisateur();
-		ArticleVendu articleVendu = new ArticleVendu("test1", "Description produit", LocalDate.now(), LocalDate.now(), 10, 15, 10, user);
+		ArticleVendu articleVendu = new ArticleVendu("test2", "Description produit", LocalDate.now(), LocalDate.now(), 10, 15, 1, 1);
 		try {
 			easyAuctionManager.ajouterArticle(articleVendu);
 		} catch (BusinessException e) {

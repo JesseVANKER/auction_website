@@ -23,12 +23,18 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	
 	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String INSERT_ARTICLE = "insert into ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, no_utilisateur, no_categorie) values(?,?,?,?,?,?);";
+	private static final String UPDATE_PRIX_ARTICLE="update ARTICLES_VENDUS set prix_vente=? where no_article=?";
+	private static final String DELETE_ARTICLE = "delete from ARTICLES where no_article=?";
+	private static final String SELECT_BY_ID =	
+	"select l.id as id_liste, l.nom as nom_liste, a.id as id_article, a.nom as nom_article,"
+	+ " a.coche from listes l left join articles a on l.id=a.id_liste where l.id=?";
+	
 	
 	private static final String INSERT_UTILISATEUR = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String UPDATE_UTILISATEUR= "update UTILISATEUR set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postale=?, ville=?, mot_de_passe=? where no_utilisateur=?";
 	private static final String DELETE_UTILISATEUR = "delete from UTILISATEURS where no_utilisateur=?";
 	private static final String SELECT_UTILISATEUR_BY_ID = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe from UTILISATEURS where no_utilisateur=?";
-	
+	private static final String SELECT_ALL_USER = "SELECT * from UTILISATEURS";
 	
 	@Override
 	public List<ArticleVendu> selectAllArticle() throws BusinessException {
@@ -111,6 +117,39 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	}
 	
 	@Override
+	public void updatePrixArticle(int prixVente, int idArticle) throws BusinessException {
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_PRIX_ARTICLE);
+			pstmt.setInt(1, prixVente);
+			pstmt.setInt(2, idArticle);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.UPDATE_PRIX_ARTICLE_ERREUR);
+			throw businessException;
+		}
+		
+	}
+	
+	@Override
+	public void deleteArticle(int idArticle) throws BusinessException {
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLE);
+			pstmt.setInt(1, idArticle);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.SUPPRESSION_ARTICLE_ERREUR);
+			throw businessException;
+		}
+		
+	}
+	
+	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws BusinessException {
 		if(utilisateur==null)
 		{
@@ -136,7 +175,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				pstmt.setString(7, utilisateur.getCodePostal());
 				pstmt.setString(8, utilisateur.getVille());
 				pstmt.setString(9, utilisateur.getMotDePasse());
-				pstmt.setInt(10, utilisateur.getCredit());
+				pstmt.setInt(10, 0);
 				pstmt.setInt(11, 0);
 				pstmt.executeUpdate();
 				
@@ -247,6 +286,35 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 
 		
 		return utilisateur;
+	}
+	
+	@Override
+	public List<Utilisateur> selectAllUtilisateur() throws BusinessException {
+		
+		List<Utilisateur> listesUtilisateurs = new ArrayList<Utilisateur>();
+		
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_USER);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				listesUtilisateurs.add(new Utilisateur(
+					rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), 
+					rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+					rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),
+					rs.getString("mot_de_passe")));
+
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+			throw businessException;
+		}
+		return listesUtilisateurs;
 	}
 /*
 

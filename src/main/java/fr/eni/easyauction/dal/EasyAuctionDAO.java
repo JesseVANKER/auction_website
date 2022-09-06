@@ -22,11 +22,29 @@ public interface EasyAuctionDAO {
 	 */
 	List<ArticleVendu> selectAllArticle() throws BusinessException;
 	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
+	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
+	void deleteArticle(int idArticle) throws BusinessException;
 	
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
 	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
+	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
+	/**
+	 * @param idArticle
+	 * @throws BusinessException
+	 */
+	/**
+	 * @param idArticle
+	 * @throws BusinessException
+	 */
+	/**
+	 * @return
+	 * @throws BusinessException
+	 */
+
+
+
 	
 	/*
 	public void insert(ListeCourse listeCourse) throws BusinessException;
