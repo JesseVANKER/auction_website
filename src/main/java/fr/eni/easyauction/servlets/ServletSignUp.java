@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.easyauction.BusinessException;
+import fr.eni.easyauction.bll.EasyAuctionManager;
+
 /**
  * Servlet implementation class ServletSignUp
  */
@@ -41,8 +44,8 @@ public class ServletSignUp extends HttpServlet {
 		//Je lis les paramètres
 		String pseudo=null;
 		String prenom=null;
-		int telephone=0;
-		int codePostal=0;
+		String telephone=null;
+		String codePostal=null;
 		String motDePasse=null;
 		String confirmation=null;
 		String nom=null;
@@ -54,49 +57,61 @@ public class ServletSignUp extends HttpServlet {
 		List<Integer> listeCodesErreur=new ArrayList<>();
 		//lecture pseudo
 				pseudo = request.getParameter("pseudo");
+				prenom = request.getParameter("prenom");
+				telephone = request.getParameter("telephone");
+				codePostal = request.getParameter("codePostal");
+				motDePasse = request.getParameter("motDePasse");
+				confirmation = request.getParameter("confirmation");
+				nom = request.getParameter("nom");
+				email = request.getParameter("email");
+				rue = request.getParameter("rue");
+				ville = request.getParameter("ville");
+				
 				if(pseudo==null || pseudo.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.PSEUDO_ERREUR);
 				}
-				if(prenom==null || pseudo.trim().isEmpty())
+				if(prenom==null || prenom.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.PRENOM_ERREUR);
 				}
-				if(telephone==0 || pseudo.trim().isEmpty())
+				if(telephone==null || telephone.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.TELEPHONE_ERREUR);
 				}
-				if(codePostal==0 || pseudo.trim().isEmpty())
+				if(codePostal==null || codePostal.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.CODE_POSTAL_ERREUR);
 				}
-				if(motDePasse==null || pseudo.trim().isEmpty())
+				if(motDePasse==null || motDePasse.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.MOT_DE_PASSE_ERREUR);
 				}
-				if(confirmation==null || pseudo.trim().isEmpty())
+				if(confirmation==null || confirmation.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.CONFIRMATION_ERREUR);
 				}
-				if(nom==null || pseudo.trim().isEmpty())
+				if(nom==null || nom.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.NOM_ERREUR);
 				}
-				if(nom==null || pseudo.trim().isEmpty())
-				{
-					listeCodesErreur.add(CodesResultatServletsSignUp.NOM_ERREUR);
-				}
-				if(email==null || pseudo.trim().isEmpty())
+				
+				if(email==null || email.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.EMAIL_ERREUR);
 				}
-				if(rue==null || pseudo.trim().isEmpty())
+				if(rue==null || rue.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.RUE_ERREUR);
 				}
-				if(ville==null || pseudo.trim().isEmpty())
+				if(ville==null || ville.trim().isEmpty())
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.VILLE_ERREUR);
+				}
+				
+				if(motDePasse!=confirmation)
+				{
+					listeCodesErreur.add(CodesResultatServletsSignUp.MDP_CONFIRMATION_ERREUR);
 				}
 				
 				if(listeCodesErreur.size()>0)
@@ -106,26 +121,26 @@ public class ServletSignUp extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 					rd.forward(request, response);
 				}
-				else
-				{
+				System.out.println(pseudo);
+				
 					//J'ajoute le repas
-					RepasManager repasManager = new RepasManager();
+					EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 					try {
-						repasManager.ajouterRepas(date, heure, Arrays.asList(repas.split(",")));
+						 easyAuctionManager.ajouterUtilisateur(pseudo, prenom, telephone, codePostal, motDePasse,confirmation, nom, email, rue, ville);
 						//Si tout se passe bien, je vais vers la page de consultation:
-						RequestDispatcher rd = request.getRequestDispatcher("/repas");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 						rd.forward(request, response);
 					} catch (BusinessException e) {
 						//Sinon je retourne à la page d'ajout pour indiquer les problèmes:
 						e.printStackTrace();
 						request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
-						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ajout.jsp");
+						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 						rd.forward(request, response);
 					}
 					
-				}
+				
 		
-		doGet(request, response);
+		
 	}
 
 }

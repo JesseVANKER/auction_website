@@ -7,7 +7,7 @@
         type="javax.sql.DataSource"
         auth="Container"
       
-        url="jdbc:sqlserver://localhost;databasename=EASY_AUCTION;integratedSecurity=false;encrypt=false;trustServerCertificate=false"
+        url="jdbc:sqlserver://10.47.101.9:1433;databasename=EASY_AUCTION;integratedSecurity=false;encrypt=false;trustServerCertificate=false"
         username="sa"
         password="Pa$$w0rd"
       
