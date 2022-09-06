@@ -44,198 +44,107 @@ public class Utilisateur {
 	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
-	/**
-	 * Getter pour pseudo
-	 * 
-	 * @return the pseudo
-	 */
+
 	public String getPseudo() {
 		return pseudo;
 	}
-	/**
-	 * Setter pour pseudo
-	 * @param pseudo the pseudo to set
-	 */
+
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
-	/**
-	 * Getter pour nom
-	 * 
-	 * @return the nom
-	 */
+
 	public String getNom() {
 		return nom;
 	}
-	/**
-	 * Setter pour nom
-	 * @param nom the nom to set
-	 */
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	/**
-	 * Getter pour prenom
-	 * 
-	 * @return the prenom
-	 */
+
 	public String getPrenom() {
 		return prenom;
 	}
-	/**
-	 * Setter pour prenom
-	 * @param prenom the prenom to set
-	 */
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	/**
-	 * Getter pour email
-	 * 
-	 * @return the email
-	 */
+
 	public String getEmail() {
 		return email;
 	}
-	/**
-	 * Setter pour email
-	 * @param email the email to set
-	 */
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	/**
-	 * Getter pour telephone
-	 * 
-	 * @return the telephone
-	 */
+
 	public String getTelephone() {
 		return telephone;
 	}
-	/**
-	 * Setter pour telephone
-	 * @param telephone the telephone to set
-	 */
+
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	/**
-	 * Getter pour rue
-	 * 
-	 * @return the rue
-	 */
+
 	public String getRue() {
 		return rue;
 	}
-	/**
-	 * Setter pour rue
-	 * @param rue the rue to set
-	 */
+
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
-	/**
-	 * Getter pour codePostal
-	 * 
-	 * @return the codePostal
-	 */
+
 	public String getCodePostal() {
 		return codePostal;
 	}
-	/**
-	 * Setter pour codePostal
-	 * @param codePostal the codePostal to set
-	 */
+
 	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
-	/**
-	 * Getter pour ville
-	 * 
-	 * @return the ville
-	 */
+
 	public String getVille() {
 		return ville;
 	}
-	/**
-	 * Setter pour ville
-	 * @param ville the ville to set
-	 */
+
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	/**
-	 * Getter pour motDePasse
-	 * 
-	 * @return the motDePasse
-	 */
+
 	public String getMotDePasse() {
 		return motDePasse;
 	}
-	/**
-	 * Setter pour motDePasse
-	 * @param motDePasse the motDePasse to set
-	 */
+
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
-	/**
-	 * Getter pour credit
-	 * 
-	 * @return the credit
-	 */
+
 	public int getCredit() {
 		return credit;
 	}
-	/**
-	 * Setter pour credit
-	 * @param credit the credit to set
-	 */
+
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	/**
-	 * Getter pour administrateur
-	 * 
-	 * @return the administrateur
-	 */
+
 	public boolean isAdministrateur() {
 		return administrateur;
 	}
-	/**
-	 * Setter pour administrateur
-	 * @param administrateur the administrateur to set
-	 */
+
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
-	/**
-	 * Getter pour listeArticleVendu
-	 * 
-	 * @return the listeArticleVendu
-	 */
+
 	public List<ArticleVendu> getListeArticleVendu() {
 		return ListeArticleVendu;
 	}
-	/**
-	 * Setter pour listeArticleVendu
-	 * @param listeArticleVendu the listeArticleVendu to set
-	 */
+
 	public void setListeArticleVendu(List<ArticleVendu> listeArticleVendu) {
 		ListeArticleVendu = listeArticleVendu;
 	}
-	/**
-	 * Getter pour listeEnchere
-	 * 
-	 * @return the listeEnchere
-	 */
+
 	public List<Enchere> getListeEnchere() {
 		return ListeEnchere;
 	}
-	/**
-	 * Setter pour listeEnchere
-	 * @param listeEnchere the listeEnchere to set
-	 */
+
 	public void setListeEnchere(List<Enchere> listeEnchere) {
 		ListeEnchere = listeEnchere;
 	}

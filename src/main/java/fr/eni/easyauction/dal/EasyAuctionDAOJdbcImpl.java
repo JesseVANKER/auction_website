@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
+import fr.eni.easyauction.bo.ArticleVendu;
 
 /**
  * Projet : auction_web
@@ -31,7 +32,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next())
 			{
-				listesArticles.add(new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article")));
+				//listesArticles.add(new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article")));
 			}
 		}
 		catch(Exception e)
@@ -45,7 +46,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	}
 	
 	@Override
-	public void insert(ArticleVendu articleVendu) throws BusinessException {
+	public void insertArticle(ArticleVendu articleVendu) throws BusinessException {
 		if(articleVendu==null)
 		{
 			BusinessException businessException = new BusinessException();
@@ -65,8 +66,8 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				pstmt.setString(2, articleVendu.getDescription());
 				pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
 				pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
-				pstmt.setInt(5, articleVendu.getNoUtilisateur());
-				pstmt.setInt(6, articleVendu.getNoCategorie());
+				pstmt.setInt(5, articleVendu.getUtilisateur().getNoUtilisateur());
+				pstmt.setInt(6, articleVendu.getCategorie().getNoCategorie());
 				pstmt.executeUpdate();
 				
 				ResultSet rs = pstmt.getGeneratedKeys();

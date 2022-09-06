@@ -269,12 +269,6 @@ public class ArticleVendu {
 		
 		
 	}
-	public ArticleVendu(int noArticle, String nomArticle ) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		
-	}
 	
 	public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur utilisateur

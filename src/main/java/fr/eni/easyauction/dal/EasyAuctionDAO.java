@@ -6,6 +6,7 @@ package fr.eni.easyauction.dal;
 import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
+import fr.eni.easyauction.bo.ArticleVendu;
 
 /**
  * Projet : auction_web
@@ -19,6 +20,7 @@ public interface EasyAuctionDAO {
 	 * @throws BusinessException
 	 */
 	List<ArticleVendu> selectAll() throws BusinessException;
+	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
 	/*
 	public void insert(ListeCourse listeCourse) throws BusinessException;
 	public void delete(int id) throws BusinessException;
@@ -29,4 +31,10 @@ public interface EasyAuctionDAO {
 	public void decocherArticle(int idArticle) throws BusinessException;
 	public void decocherListeCourse(int listeCourse) throws BusinessException;
 	*/
+
+	/**
+	 * @param articleVendu
+	 * @throws BusinessException
+	 */
+	
 }
