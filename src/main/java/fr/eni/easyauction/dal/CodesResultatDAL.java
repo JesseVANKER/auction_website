@@ -43,7 +43,7 @@ public abstract class CodesResultatDAL {
 	/**
 	 * Erreur au décochage d'un article
 	 */
-	public static final int DECOCHE_ARTICLE_ERREUR = 10008;
+	public static final int UPDATE_PRIX_ARTICLE_ERREUR = 10008;
 	/**
 	 * Erreur au décochage de tous les articles d'une liste
 	 */

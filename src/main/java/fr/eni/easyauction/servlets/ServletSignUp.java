@@ -121,6 +121,7 @@ public class ServletSignUp extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 					rd.forward(request, response);
 				}
+
 				System.out.println(pseudo);
 				
 					//J'ajoute le repas
@@ -137,10 +138,6 @@ public class ServletSignUp extends HttpServlet {
 						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
 						rd.forward(request, response);
 					}
-					
-				
-		
-		
-	}
 
+	}
 }
