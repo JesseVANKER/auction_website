@@ -29,6 +29,7 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 
 		Utilisateur user = new Utilisateur();
@@ -43,6 +44,11 @@ public class ServletAccueil extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/accueil.jsp");
 		rd.forward(request, response);
 	
+=======
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		rd.forward(request, response);
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	}
 
 	/**
