@@ -14,11 +14,21 @@ import java.time.LocalDate;
  *
  */
 public class Enchere {
+	private int noEnchere;
 	private LocalDate dateEnchere;
 	private int montantEnchere;
 	private Utilisateur utilisateur;
 	private ArticleVendu articleVendu;
 	
+
+	public int getNoEnchere() {
+		return noEnchere;
+	}
+
+	public void setNoEnchere(int noEnchere) {
+		this.noEnchere = noEnchere;
+	}
+
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}

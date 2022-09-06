@@ -56,4 +56,10 @@ public abstract class CodesResultatServletsSignUp {
 	public static final int VILLE_ERREUR=30009;
 	
 	
+	/**
+	 * mdp != de confirmation
+	 */
+	public static final int MDP_CONFIRMATION_ERREUR=30010;
+	
+	
 }

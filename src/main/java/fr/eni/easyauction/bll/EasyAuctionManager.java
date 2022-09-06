@@ -1,10 +1,13 @@
 package fr.eni.easyauction.bll;
 
 
+
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Utilisateur;
 import fr.eni.easyauction.dal.DAOFactory;
 import fr.eni.easyauction.dal.EasyAuctionDAO;
+
 
 public class EasyAuctionManager {
 	private EasyAuctionDAO easyAuctionDAO;
@@ -27,11 +30,53 @@ public class EasyAuctionManager {
 			throw businessException;
 		}
 	}
+	
+	public void ajouterUtilisateur(String pseudo,String prenom,
+			String telephone,String codePostal,String motDePasse,
+			String confirmation,String nom,String email,String rue,
+			String ville) throws BusinessException{
+		BusinessException businessException = new BusinessException();
+		//this.validerNomArticle(nomArticle, businessException);
+		Utilisateur utilisateur= null;		
+		
+		if(!businessException.hasErreurs())
+		{
+			utilisateur = new Utilisateur();
+			utilisateur.setPseudo(pseudo);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setTelephone(telephone);
+			utilisateur.setCodePostal(codePostal);
+			utilisateur.setMotDePasse(motDePasse);
+			utilisateur.setNom(nom);
+			utilisateur.setEmail(email);
+			utilisateur.setRue(rue);
+			utilisateur.setVille(ville);
+			
+			this.easyAuctionDAO.insertUtilisateur(utilisateur);
+		}
+		
+		if(!businessException.hasErreurs())
+		{
+
+			this.easyAuctionDAO.insertUtilisateur(utilisateur);
+		}
+		else
+		{
+			throw businessException;
+		}
+	}
+	
+	
+	
+	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException
 	{
 		return this.listeCourseDAO.selectAll();
 	}
+	
+	
+	
 
 	public ListeCourse selectionnerListe(int idListeCourse) throws BusinessException {
 		return this.listeCourseDAO.selectById(idListeCourse);

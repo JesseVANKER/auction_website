@@ -30,16 +30,6 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
-
-		Utilisateur user = new Utilisateur();
-		ArticleVendu articleVendu = new ArticleVendu("test1", "Description produit", LocalDate.now(), LocalDate.now(), 10, 15, 10, user);
-		try {
-			easyAuctionManager.ajouterArticle(articleVendu);
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
-
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
 

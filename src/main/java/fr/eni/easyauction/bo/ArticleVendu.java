@@ -234,6 +234,19 @@ public class ArticleVendu {
 		this.idCategorie = idCategorie;
 		
 	}
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int idUtilisateur, int idCategorie) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.idUtilisateur = idUtilisateur;
+		this.idCategorie = idCategorie;
+		
+	}
 
 
 

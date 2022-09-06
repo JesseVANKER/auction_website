@@ -28,6 +28,8 @@ public abstract class CodesResultatDAL {
 	 * Liste d'objet inexistante
 	 */
 	public static final int LECTURE_UTILISATEUR_INEXISTANTE = 10004;
+	
+	public static final int LECTURE_ENCHERE_INEXISTANTE = 10004;
 	/**
 	 * Erreur à la suppression d'un objet
 	 */
@@ -43,7 +45,7 @@ public abstract class CodesResultatDAL {
 	/**
 	 * Erreur au décochage d'un article
 	 */
-	public static final int DECOCHE_ARTICLE_ERREUR = 10008;
+	public static final int UPDATE_PRIX_ARTICLE_ERREUR = 10008;
 	/**
 	 * Erreur au décochage de tous les articles d'une liste
 	 */
