@@ -7,6 +7,7 @@ import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
 
 /**
@@ -20,16 +21,23 @@ public interface EasyAuctionDAO {
 	 * @return
 	 * @throws BusinessException
 	 */
+	
+	 /* ----------- ARTICLES --------------*/
 	List<ArticleVendu> selectAllArticle() throws BusinessException;
 	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
 	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
 	void deleteArticle(int idArticle) throws BusinessException;
 	
+	 /* ----------- UTILISATEURS --------------*/
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
 	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
+	
+	/* ----------- ENCHERES --------------*/
+	void insertEnchere(Enchere enchere) throws BusinessException;
+	Enchere selectEnchere(int noEnchere) throws BusinessException;
 	/**
 	 * @param idArticle
 	 * @throws BusinessException
@@ -42,6 +50,17 @@ public interface EasyAuctionDAO {
 	 * @return
 	 * @throws BusinessException
 	 */
+	/**
+	 * @param enchere
+	 * @throws BusinessException
+	 */
+	/**
+	 * @param noEnchere
+	 * @return
+	 * @throws BusinessException
+	 */
+	
+
 
 
 
