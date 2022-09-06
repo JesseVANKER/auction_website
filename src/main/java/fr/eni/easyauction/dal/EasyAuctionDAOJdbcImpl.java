@@ -39,11 +39,12 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next())
 			{
-//				listesArticles.add(new ArticleVendu(
-//					rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
-//					rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
-//					rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
-//					rs.getInt("no_categorie")));
+				listesArticles.add(new ArticleVendu(
+					rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
+					rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+					rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"),
+					rs.getInt("no_categorie")));
+
 			}
 		}
 		catch(Exception e)
