@@ -27,7 +27,7 @@ public abstract class CodesResultatDAL {
 	/**
 	 * Liste d'objet inexistante
 	 */
-	public static final int LECTURE_LISTE_INEXISTANTE = 10004;
+	public static final int LECTURE_UTILISATEUR_INEXISTANTE = 10004;
 	/**
 	 * Erreur à la suppression d'un objet
 	 */
@@ -35,11 +35,11 @@ public abstract class CodesResultatDAL {
 	/**
 	 * Erreur à la suppression d'une liste
 	 */
-	public static final int SUPPRESSION_LISTE_ERREUR = 10006;
+	public static final int SUPPRESSION_UTILISATEUR_ERREUR = 10006;
 	/**
 	 * Erreur au cochage d'un article
 	 */
-	public static final int COCHE_ARTICLE_ERREUR = 10007;
+	public static final int UPDATE_UTILISATEUR_ERREUR = 10007;
 	/**
 	 * Erreur au décochage d'un article
 	 */

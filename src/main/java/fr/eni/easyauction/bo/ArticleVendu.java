@@ -3,6 +3,7 @@
  */
 package fr.eni.easyauction.bo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +30,26 @@ public class ArticleVendu {
 	private List<Enchere> ListeEnchere = new ArrayList<Enchere>();
 	private Categorie categorie;
 	private Retrait[] retrait = new Retrait[1];
+	private int idUtilisateur;
+	private int idCategorie;
 	
+	
+	public int getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public int getIdCategorie() {
+		return idCategorie;
+	}
+
+	public void setIdCategorie(int idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
 	public int getNoArticle() {
 		return noArticle;
 	}
@@ -165,21 +185,21 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur utilisateur
-			) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.utilisateur = utilisateur;
-		
-	}
+//	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+//			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur utilisateur
+//			) {
+//		super();
+//		this.noArticle = noArticle;
+//		this.nomArticle = nomArticle;
+//		this.description = description;
+//		this.dateDebutEncheres = dateDebutEncheres;
+//		this.dateFinEncheres = dateFinEncheres;
+//		this.miseAPrix = miseAPrix;
+//		this.prixVente = prixVente;
+//		this.etatVente = etatVente;
+//		this.utilisateur = utilisateur;
+//		
+//	}
 	public ArticleVendu() {
 		super();
 		
@@ -200,5 +220,22 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		
 	}
+
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int idUtilisateur, int idCategorie) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.idUtilisateur = idUtilisateur;
+		this.idCategorie = idCategorie;
+		
+	}
+
+
+
 	
 }
