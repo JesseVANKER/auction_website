@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package fr.eni.easyauction.dal;
+
+import java.util.List;
+
+import fr.eni.easyauction.BusinessException;
+import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Utilisateur;
+
+/**
+ * Projet : auction_web
+ * Date : 5 sept. 2022
+ * Auteur : jvankerrebrouck2022
+ */
+public interface EasyAuctionDAO {
+
+	/**
+	 * @return
+	 * @throws BusinessException
+	 */
+	List<ArticleVendu> selectAllArticle() throws BusinessException;
+	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
+	
+	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
+	void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
+	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
+	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
+	
+	/*
+	public void insert(ListeCourse listeCourse) throws BusinessException;
+	public void delete(int id) throws BusinessException;
+	public List<ListeCourse> selectAll() throws BusinessException;
+	public ListeCourse selectById(int id) throws BusinessException;
+	public void deleteArticle(int idArticle) throws BusinessException;
+	public void cocherArticle(int idArticle) throws BusinessException;
+	public void decocherArticle(int idArticle) throws BusinessException;
+	public void decocherListeCourse(int listeCourse) throws BusinessException;
+	*/
+	
+}
