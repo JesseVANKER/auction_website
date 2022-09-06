@@ -6,7 +6,7 @@
 	<display-name>auction_web</display-name>
 	<welcome-file-list>
 		
-		<welcome-file>accueil.jsp</welcome-file>
+		<welcome-file>Accueil</welcome-file>
 		
 	</welcome-file-list>
 </web-app>
