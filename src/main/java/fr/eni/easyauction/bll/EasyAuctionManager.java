@@ -83,7 +83,6 @@ public class EasyAuctionManager {
 	
 	
 	
-	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException
 	{

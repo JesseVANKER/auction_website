@@ -21,11 +21,14 @@ public interface EasyAuctionDAO {
 	 * @return
 	 * @throws BusinessException
 	 */
+	
+	 /* ----------- ARTICLES --------------*/
 	List<ArticleVendu> selectAllArticle() throws BusinessException;
 	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
 	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
 	void deleteArticle(int idArticle) throws BusinessException;
 	
+	 /* ----------- UTILISATEURS --------------*/
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
@@ -33,6 +36,9 @@ public interface EasyAuctionDAO {
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
 	List<Enchere> selectAllEnchere() throws BusinessException;
 	Enchere selectEnchereById(int idEnchere) throws BusinessException;
+	/* ----------- ENCHERES --------------*/
+	void insertEnchere(Enchere enchere) throws BusinessException;
+	Enchere selectEnchere(int noEnchere) throws BusinessException;
 	/**
 	 * @param idArticle
 	 * @throws BusinessException

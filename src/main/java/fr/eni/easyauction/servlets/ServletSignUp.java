@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bll.EasyAuctionManager;
+import fr.eni.easyauction.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletSignUp
@@ -52,6 +53,8 @@ public class ServletSignUp extends HttpServlet {
 		String email=null;
 		String rue=null;
 		String ville=null;
+		
+		boolean verifUtilisateur=true;
 		
 		request.setCharacterEncoding("UTF-8");
 		List<Integer> listeCodesErreur=new ArrayList<>();
@@ -109,35 +112,74 @@ public class ServletSignUp extends HttpServlet {
 					listeCodesErreur.add(CodesResultatServletsSignUp.VILLE_ERREUR);
 				}
 				
-				if(motDePasse!=confirmation)
+				if(!motDePasse.equals(confirmation))
 				{
 					listeCodesErreur.add(CodesResultatServletsSignUp.MDP_CONFIRMATION_ERREUR);
 				}
 				
-				if(listeCodesErreur.size()>0)
-				{
-					//Je renvoie les codes d'erreurs
-					request.setAttribute("listeCodesErreur",listeCodesErreur);
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
-					rd.forward(request, response);
-				}
-
-				System.out.println(pseudo);
 				
-					//J'ajoute le repas
+				
+				
+				
+
+				
+				
+					//J'ajoute l'utilisateur
 					EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
-					try {
-						 easyAuctionManager.ajouterUtilisateur(pseudo, prenom, telephone, codePostal, motDePasse,confirmation, nom, email, rue, ville);
-						//Si tout se passe bien, je vais vers la page de consultation:
-						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-						rd.forward(request, response);
-					} catch (BusinessException e) {
-						//Sinon je retourne à la page d'ajout pour indiquer les problèmes:
-						e.printStackTrace();
-						request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
-						RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
-						rd.forward(request, response);
-					}
+					
+					
+		                List<Utilisateur> listeUtilisateur=null;
+		                
+		                try {
+							listeUtilisateur = easyAuctionManager.selectionnerTousLesUtilisateurs();
+						} catch (BusinessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		                
+		                for (Utilisateur user : listeUtilisateur) {
+		                	 if( user.getPseudo().equals(pseudo)) {
+		                		 verifUtilisateur=false;
+		                	 }
+		                	 else if( user.getEmail().equals(email)) {
+		                		 verifUtilisateur=false;
+		                	 }
+		                	 
+		                	}
+
+		                if(verifUtilisateur==false)
+						{
+							listeCodesErreur.add(CodesResultatServletsSignUp.COMPTE_EXISTANT_ERREUR);
+						}
+		                
+					
+		                if(listeCodesErreur.size()>0)
+						{
+		                	System.out.println(listeCodesErreur.size());
+							//Je renvoie les codes d'erreurs
+							request.setAttribute("listeCodesErreur",listeCodesErreur);
+							RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+							rd.forward(request, response);
+							
+						}
+		                else {
+		                	
+		                	try {
+		                			
+								 easyAuctionManager.ajouterUtilisateur(pseudo, prenom, telephone, codePostal, motDePasse,confirmation, nom, email, rue, ville);
+								//Si tout se passe bien, je vais vers la page de consultation:
+								RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+								rd.forward(request, response);
+							} catch (BusinessException e) {
+								//Sinon je retourne à la page d'ajout pour indiquer les problèmes:
+								e.printStackTrace();
+								request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
+								RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+								rd.forward(request, response);
+							}
+		                }
+					
+					
 
 	}
 }

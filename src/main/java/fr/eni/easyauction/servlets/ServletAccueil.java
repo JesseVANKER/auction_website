@@ -1,7 +1,10 @@
 package fr.eni.easyauction.servlets;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bll.EasyAuctionManager;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
+
 
 
 /**
@@ -29,8 +34,20 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		List<Integer> listeCodesErreur=new ArrayList<>();
+		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
+		List<ArticleVendu> listeArticleVendu=null;
+		try {
+			listeArticleVendu = easyAuctionManager.selectionnerTousLesArticles();
+				
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
+		}
+		
+		request.setAttribute("listeArticleVendu", listeArticleVendu);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		
 		rd.forward(request, response);
 
 	}

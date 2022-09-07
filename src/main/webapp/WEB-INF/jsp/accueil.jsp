@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
+<%@page import="fr.eni.easyauction.bo.Enchere"%>
+<%@page import="fr.eni.easyauction.bo.ArticleVendu"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,5 +20,10 @@
   <li><a href="<%=request.getContextPath()%>/ServletSignUp">Sign Up</a></li>
  
 </ul>
+<br>
+<br>
+<h2>Listes Encheres</h2>
+
+
 </body>
 </html>
