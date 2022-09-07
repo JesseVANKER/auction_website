@@ -20,6 +20,15 @@ public class Enchere {
 	private Utilisateur utilisateur;
 	private ArticleVendu articleVendu;
 	
+
+	public int getNoEnchere() {
+		return noEnchere;
+	}
+
+	public void setNoEnchere(int noEnchere) {
+		this.noEnchere = noEnchere;
+	}
+
 	public LocalDate getDateEnchere() {
 		return dateEnchere;
 	}

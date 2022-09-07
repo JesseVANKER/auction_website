@@ -28,6 +28,8 @@ public abstract class CodesResultatDAL {
 	 * Liste d'objet inexistante
 	 */
 	public static final int LECTURE_UTILISATEUR_INEXISTANTE = 10004;
+	
+	public static final int LECTURE_ENCHERE_INEXISTANTE = 10004;
 	/**
 	 * Erreur à la suppression d'un objet
 	 */

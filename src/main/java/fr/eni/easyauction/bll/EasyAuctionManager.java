@@ -69,6 +69,7 @@ public class EasyAuctionManager {
 		}
 	}
 	
+
 	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException{
 		return this.easyAuctionDAO.selectAllUtilisateur();
 	}
@@ -81,7 +82,7 @@ public class EasyAuctionManager {
 		return this.easyAuctionDAO.selectAllEnchere();
 	}
 	
-	
+
 	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException

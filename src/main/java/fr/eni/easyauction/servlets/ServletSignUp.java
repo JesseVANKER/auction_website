@@ -117,14 +117,23 @@ public class ServletSignUp extends HttpServlet {
 					listeCodesErreur.add(CodesResultatServletsSignUp.MDP_CONFIRMATION_ERREUR);
 				}
 				
-				
+
+				if(listeCodesErreur.size()>0)
+				{
+					//Je renvoie les codes d'erreurs
+					request.setAttribute("listeCodesErreur",listeCodesErreur);
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+					rd.forward(request, response);
+				}
+
+
 				
 				
 				
 
 				
 				
-					//J'ajoute l'utilisateur
+
 					EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 					
 					

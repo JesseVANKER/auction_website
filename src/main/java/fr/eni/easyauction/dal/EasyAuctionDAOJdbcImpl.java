@@ -36,7 +36,10 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	private static final String SELECT_ALL_ENCHERE_BY_ID ="SELECT * FROM ENCHERES WHERE no_article=?";
 	private static final String SELECT_ARTICLE_BY_ID ="SELECT  no_article, nom_article ,  description, date_debut_encheres, date_fin_encheres, prix_initial ,  prix_vente,  no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article=?";
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
 	private static final String SELECT_ENCHERE = "select date_enchere, montant_enchere, e.no_article, e.no_utilisateur, u.pseudo, a.nom_article FROM ENCHERES e INNER JOIN UTILISATEURS u on e.no_utilisateur=u.no_utilisateur INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article WHERE no_enchere=?;";
 			
@@ -183,7 +186,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				pstmt.setString(7, utilisateur.getCodePostal());
 				pstmt.setString(8, utilisateur.getVille());
 				pstmt.setString(9, utilisateur.getMotDePasse());
-				pstmt.setInt(10, 100);
+				pstmt.setInt(10, 0);
 				pstmt.setInt(11, 0);
 				pstmt.executeUpdate();
 				
@@ -324,6 +327,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		}
 		return listesUtilisateurs;
 	}
+<<<<<<< HEAD
 	
 	
 	@Override
@@ -457,6 +461,109 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	
 	
 /*
+=======
+
+	/* ----------- ENCHERES --------------*/
+	@Override
+	public void insertEnchere(Enchere enchere) throws BusinessException {
+		if(enchere==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw businessException;
+		}
+		
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			try
+			{
+				
+				cnx.setAutoCommit(false);
+
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
+				pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere()));
+				pstmt.setInt(2, enchere.getMontantEnchere());
+				pstmt.setInt(3, enchere.getArticleVendu().getNoArticle());
+				pstmt.setInt(4, enchere.getUtilisateur().getNoUtilisateur());
+				pstmt.executeUpdate();
+				
+				ResultSet rs = pstmt.getGeneratedKeys();
+				if(rs.next())
+				{
+					enchere.setNoEnchere(1);
+					
+				}
+				rs.close();
+				pstmt.close();
+				
+				cnx.commit();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				cnx.rollback();
+				throw e;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			throw businessException;
+		}
+		
+	}
+
+	@Override
+	
+	public Enchere selectEnchere(int noEnchere) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+//	@Override
+//	public Enchere selectEnchere(int noEnchere) throws BusinessException {
+//		
+//		Enchere enchere = new Enchere();
+//		if(noEnchere==0)
+//		{
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.LECTURE_ENCHERE_INEXISTANTE);
+//			throw businessException;
+//		}
+//		try(Connection cnx = ConnectionProvider.getConnection())
+//		{
+//			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ENCHERE);
+//			pstmt.setInt(1, noEnchere);
+//			ResultSet rs = pstmt.executeQuery();
+//
+//			utilisateur.setPseudo(rs.getString("pseudo"));
+//			utilisateur.setNom(rs.getString("nom"));
+//			utilisateur.setPrenom(rs.getString("prenom"));
+//			utilisateur.setEmail(rs.getString("email"));
+//			utilisateur.setTelephone(rs.getString("telephone"));
+//			utilisateur.setRue(rs.getString("rue"));
+//			utilisateur.setCodePostal(rs.getString("code_postal"));
+//			utilisateur.setVille(rs.getString("ville"));
+//			utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+//			
+//
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTE_ECHEC);
+//			throw businessException;
+//		}
+//
+//		
+//		return enchere;
+//		
+//	}
+	/*
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 
 	/* ----------- ENCHERES --------------*/
 	@Override
