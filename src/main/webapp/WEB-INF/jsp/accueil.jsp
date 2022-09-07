@@ -35,7 +35,60 @@
             </div>
         </div>
     </nav>	
-
+	
+	<%
+            List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
+            if(listeCodesErreur!=null)
+            {
+        %>
+                <p style="color:red;">Erreur :</p>
+        <%
+                for(int codeErreur:listeCodesErreur)
+                {
+        %>
+                    <p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
+        <%    
+                }
+            }
+        %>
+        
+        <table align="center">
+            <thead>
+                <tr>
+                    <td>Numéro Enchere </td>
+                    <td>Date Enchere </td>
+                    <td>Montant Enchere </td>
+                    <td> Utilisateur</td>
+                </tr>
+            </thead>
+                <%
+                    List<ArticleVendu> listeArticleVendu = (List<ArticleVendu>) request.getAttribute("listeArticleVendu");
+                    if(listeArticleVendu!=null && listeArticleVendu.size()>0)
+                    {
+                %>
+                        <tbody>
+                            <%
+                            for(ArticleVendu article : listeArticleVendu)
+                            {
+                            %>
+                                <tr>
+                                    
+                                    <td><%=article.getNomArticle()%> </td>
+                                    <td><%=article.getDateFinEncheres()%> </td>
+                                    <td><%=article.getMiseAPrix()%> </td>
+                                    <td><%=article%> </td>
+                                    
+                                
+                                </tr>
+                            
+                        </tbody>
+                <%
+                            }
+                    }
+                %>
+    
+            
+        
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
