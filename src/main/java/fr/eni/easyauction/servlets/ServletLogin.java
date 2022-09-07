@@ -63,7 +63,7 @@ public class ServletLogin extends HttpServlet {
 		
 		
 		try {
-			lesUtilisateurs=easyAuctionManager.selectionnerAllUtilisateur();
+			lesUtilisateurs=easyAuctionManager.selectionnerTousLesUtilisateurs();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
