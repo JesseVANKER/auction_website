@@ -7,6 +7,7 @@ import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
 
 /**
@@ -30,6 +31,8 @@ public interface EasyAuctionDAO {
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
 	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
+	List<Enchere> selectAllEnchere() throws BusinessException;
+	Enchere selectEnchereById(int idEnchere) throws BusinessException;
 	/**
 	 * @param idArticle
 	 * @throws BusinessException
@@ -42,6 +45,33 @@ public interface EasyAuctionDAO {
 	 * @return
 	 * @throws BusinessException
 	 */
+	/**
+	 * Méthode en charge de
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * Méthode en charge de
+	 * @param idEnchere
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * Méthode en charge de
+	 * @param idArticle
+	 * @return
+	 * @throws BusinessException
+	 */
+	ArticleVendu selectArticleById(int idArticle) throws BusinessException;
+	/**
+	 * Méthode en charge de
+	 * @param idEnchere
+	 * @return
+	 * @throws BusinessException
+	 */
+	List<Enchere> selectAllEnchereById(int idEnchere) throws BusinessException;
+	
+
 
 
 

@@ -48,7 +48,7 @@
     <div>
         <label for="telephone">Téléphone : </label>
         <input type="tel" id="mail" name="telephone" value="0781726621" maxlength="10" 
-        required Pattern="^9[0-9]{7}">
+        >
     </div>
     
     <div>
