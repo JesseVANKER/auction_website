@@ -36,10 +36,10 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	private static final String SELECT_ALL_ENCHERE_BY_ID ="SELECT * FROM ENCHERES WHERE no_article=?";
 	private static final String SELECT_ARTICLE_BY_ID ="SELECT  no_article, nom_article ,  description, date_debut_encheres, date_fin_encheres, prix_initial ,  prix_vente,  no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article=?";
 	
-<<<<<<< HEAD
+
 	
-=======
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+
+
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
 	private static final String SELECT_ENCHERE = "select date_enchere, montant_enchere, e.no_article, e.no_utilisateur, u.pseudo, a.nom_article FROM ENCHERES e INNER JOIN UTILISATEURS u on e.no_utilisateur=u.no_utilisateur INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article WHERE no_enchere=?;";
 			
@@ -327,7 +327,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		}
 		return listesUtilisateurs;
 	}
-<<<<<<< HEAD
+
 	
 	
 	@Override
@@ -464,63 +464,9 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 =======
 
 	/* ----------- ENCHERES --------------*/
-	@Override
-	public void insertEnchere(Enchere enchere) throws BusinessException {
-		if(enchere==null)
-		{
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
-			throw businessException;
-		}
-		
-		try(Connection cnx = ConnectionProvider.getConnection())
-		{
-			try
-			{
-				
-				cnx.setAutoCommit(false);
-
-				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
-				pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere()));
-				pstmt.setInt(2, enchere.getMontantEnchere());
-				pstmt.setInt(3, enchere.getArticleVendu().getNoArticle());
-				pstmt.setInt(4, enchere.getUtilisateur().getNoUtilisateur());
-				pstmt.executeUpdate();
-				
-				ResultSet rs = pstmt.getGeneratedKeys();
-				if(rs.next())
-				{
-					enchere.setNoEnchere(1);
-					
-				}
-				rs.close();
-				pstmt.close();
-				
-				cnx.commit();
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				cnx.rollback();
-				throw e;
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-			throw businessException;
-		}
-		
-	}
-
-	@Override
 	
-	public Enchere selectEnchere(int noEnchere) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
 	
 //	@Override
 //	public Enchere selectEnchere(int noEnchere) throws BusinessException {

@@ -35,7 +35,7 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+
 		List<Integer> listeCodesErreur=new ArrayList<>();
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 		List<ArticleVendu> listeArticleVendu=null;
@@ -48,12 +48,12 @@ public class ServletAccueil extends HttpServlet {
 		}
 		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
-=======
+
 
 		HttpSession session = request.getSession();
 		
 		
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		
 		rd.forward(request, response);

@@ -27,6 +27,7 @@ public interface EasyAuctionDAO {
 	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
 	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
 	void deleteArticle(int idArticle) throws BusinessException;
+	ArticleVendu selectArticleById(int idArticle) throws BusinessException;
 	
 	 /* ----------- UTILISATEURS --------------*/
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
@@ -34,63 +35,56 @@ public interface EasyAuctionDAO {
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
 	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
-<<<<<<< HEAD
-	List<Enchere> selectAllEnchere() throws BusinessException;
-	Enchere selectEnchereById(int idEnchere) throws BusinessException;
-=======
+
 	
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+
+	
+
 	/* ----------- ENCHERES --------------*/
 	void insertEnchere(Enchere enchere) throws BusinessException;
-	Enchere selectEnchere(int noEnchere) throws BusinessException;
-	/**
-	 * @param idArticle
-	 * @throws BusinessException
-	 */
-	/**
-	 * @param idArticle
-	 * @throws BusinessException
-	 */
-	/**
-	 * @return
-	 * @throws BusinessException
-	 */
-	/**
-<<<<<<< HEAD
-	 * Méthode en charge de
-	 * @return
-	 * @throws BusinessException
-	 */
-	/**
-	 * Méthode en charge de
-	 * @param idEnchere
-	 * @return
-	 * @throws BusinessException
-	 */
-	/**
-	 * Méthode en charge de
-	 * @param idArticle
-	 * @return
-	 * @throws BusinessException
-	 */
-	ArticleVendu selectArticleById(int idArticle) throws BusinessException;
-	/**
-	 * Méthode en charge de
-	 * @param idEnchere
-	 * @return
-	 * @throws BusinessException
-	 */
+	
+	List<Enchere> selectAllEnchere() throws BusinessException;
+	Enchere selectEnchereById(int idEnchere) throws BusinessException;
 	List<Enchere> selectAllEnchereById(int idEnchere) throws BusinessException;
-=======
-	 * @param enchere
+	/**
+	 * @param idArticle
 	 * @throws BusinessException
 	 */
 	/**
-	 * @param noEnchere
+	 * @param idArticle
+	 * @throws BusinessException
+	 */
+	/**
 	 * @return
 	 * @throws BusinessException
 	 */
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+	/**
+
+	 * Méthode en charge de
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * Méthode en charge de
+	 * @param idEnchere
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * Méthode en charge de
+	 * @param idArticle
+	 * @return
+	 * @throws BusinessException
+	 */
+
+	/**
+	 * Méthode en charge de
+	 * @param idEnchere
+	 * @return
+	 * @throws BusinessException
+	 */
+	
+
 	
 
 

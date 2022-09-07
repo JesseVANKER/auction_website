@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +17,16 @@
 <h2>Mon profil</h2>
 
 
-<%
-			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
-			if(listeCodesErreur!=null)
-			{
-		%>
-				<p style="color:red;">Erreur, l'utilisateur n'a pas pu être ajouté :</p>
-		<%
-				for(int codeErreur:listeCodesErreur)
-				{
-		%>
-					<p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
-		<%	
-				}
-			}
-		%>
-
+		<c:if test="${!empty listeCodesErreur}">
+			<div class="alert alert-danger" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	<c:forEach var="code" items="${listeCodesErreur}">
+			  		<li>${LecteurMessage.getMessageErreur(code)}</li>
+			  	</c:forEach>
+			  </ul>
+			</div>
+		</c:if>
 
 
 <form action="<%=request.getContextPath()%>/ServletSignUp" method="post">

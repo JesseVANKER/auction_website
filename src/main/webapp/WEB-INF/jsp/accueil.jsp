@@ -14,22 +14,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-<h1>Accueil</h1>
-<br>
-<br>
-<h2>ENI-Encheres</h2>
-<ul>
-  <li><a href="<%=request.getContextPath()%>/ServletLogin">Login</a></li>
-  <li><a href="<%=request.getContextPath()%>/ServletSignUp">Sign Up</a></li>
- 
-</ul>
-<br>
-<br>
-<h2>Listes Encheres</h2>
 
 
-=======
 	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: rgb(132, 91, 179)">
         <div class="container">
             <a class="navbar-brand" href="#page-top"></a>
@@ -56,10 +42,13 @@
         </div>
     </nav>	
 
-
+	
+	
+	
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="js/scripts.js"></script>
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+
 </body>
 </html>
