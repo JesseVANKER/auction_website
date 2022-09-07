@@ -83,5 +83,20 @@ public class Enchere {
 		super();
 		
 	}
+
+	/**
+	 * Constructeur.
+	 * @param int1
+	 * @param localDate
+	 * @param int2
+	 * @param int3
+	 * @param int4
+	 */
+	public Enchere(int int1, LocalDate localDate, int int2, int int3, int int4) {
+		// TODO Auto-generated constructor stub
+	}
+	public Enchere( LocalDate localDate, int montantUtilisateur, int no_article, int no_utilisateur) {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

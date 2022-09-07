@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
 import fr.eni.easyauction.dal.DAOFactory;
 import fr.eni.easyauction.dal.EasyAuctionDAO;
@@ -54,7 +55,7 @@ public class EasyAuctionManager {
 			utilisateur.setRue(rue);
 			utilisateur.setVille(ville);
 			
-			this.easyAuctionDAO.insertUtilisateur(utilisateur);
+			
 		}
 		
 		if(!businessException.hasErreurs())
@@ -68,12 +69,20 @@ public class EasyAuctionManager {
 		}
 	}
 	
-	public List<Utilisateur> selectionnerAllUtilisateur() throws BusinessException {
-		
+
+	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException{
 		return this.easyAuctionDAO.selectAllUtilisateur();
-		
 	}
 	
+	public List<ArticleVendu> selectionnerTousLesArticles() throws BusinessException{
+		return this.easyAuctionDAO.selectAllArticle();
+	}
+	
+	public List<Enchere> selectionnerToutesLesEncheres() throws BusinessException{
+		return this.easyAuctionDAO.selectAllEnchere();
+	}
+	
+
 	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException

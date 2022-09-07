@@ -65,6 +65,21 @@ public abstract class CodesResultatServletsSignUp {
 	 * Utilisateur inexistant 
 	 */
 	public static final int UTILISATEUR_INEXISTANT=30011;
+<<<<<<< HEAD
+	
+	/*
+	 * MDP Incorrect
+	 */
+	public static final int MDP_INCORRECT=30012;
+	/**
+	 * le compte est déjà existant 
+	 */
+	public static final int COMPTE_EXISTANT_ERREUR=30013;
+	
+	
+	
+=======
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	
 	/*
 	 * MDP Incorrect
