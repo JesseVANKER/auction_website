@@ -122,9 +122,8 @@ public class ServletSignUp extends HttpServlet {
 					rd.forward(request, response);
 				}
 
-				System.out.println(pseudo);
 				
-					//J'ajoute le repas
+					//J'ajoute l'utilisateur
 					EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 					try {
 						 easyAuctionManager.ajouterUtilisateur(pseudo, prenom, telephone, codePostal, motDePasse,confirmation, nom, email, rue, ville);

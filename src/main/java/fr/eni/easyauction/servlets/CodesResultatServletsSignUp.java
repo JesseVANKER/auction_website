@@ -61,5 +61,13 @@ public abstract class CodesResultatServletsSignUp {
 	 */
 	public static final int MDP_CONFIRMATION_ERREUR=30010;
 	
+	/*
+	 * Utilisateur inexistant 
+	 */
+	public static final int UTILISATEUR_INEXISTANT=30011;
 	
+	/*
+	 * MDP Incorrect
+	 */
+	public static final int MDP_INCORRECT=30012;
 }

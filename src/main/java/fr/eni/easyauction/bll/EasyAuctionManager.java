@@ -2,6 +2,8 @@ package fr.eni.easyauction.bll;
 
 
 
+import java.util.List;
+
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
 import fr.eni.easyauction.bo.Utilisateur;
@@ -66,7 +68,11 @@ public class EasyAuctionManager {
 		}
 	}
 	
-	
+	public List<Utilisateur> selectionnerAllUtilisateur() throws BusinessException {
+		
+		return this.easyAuctionDAO.selectAllUtilisateur();
+		
+	}
 	
 	
 	/*

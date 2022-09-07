@@ -375,6 +375,13 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		}
 		
 	}
+
+	@Override
+	
+	public Enchere selectEnchere(int noEnchere) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 //	@Override
 //	public Enchere selectEnchere(int noEnchere) throws BusinessException {
