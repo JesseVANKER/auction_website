@@ -129,3 +129,11 @@ p{
   cursor: pointer;
   border: none;
  }
+ 
+a {
+    color: white;
+ 	font-family: sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+}

@@ -55,17 +55,9 @@ public class EasyAuctionManager {
 			utilisateur.setEmail(email);
 			utilisateur.setRue(rue);
 			utilisateur.setVille(ville);
-			
-			
-		}
-		
-		if(!businessException.hasErreurs())
-		{
-
 			this.easyAuctionDAO.insertUtilisateur(utilisateur);
-		}
-		else
-		{
+			
+		} else {
 			throw businessException;
 		}
 	}
@@ -77,6 +69,10 @@ public class EasyAuctionManager {
 	
 	public List<ArticleVendu> selectionnerTousLesArticles() throws BusinessException{
 		return this.easyAuctionDAO.selectAllArticle();
+	}
+	
+	public List<ArticleVendu> selectionnerTousLesArticlesByUser(int idUser) throws BusinessException {
+		return this.easyAuctionDAO.selectAllArticleByUser(idUser);
 	}
 	
 	public List<Enchere> selectionnerToutesLesEncheres() throws BusinessException{
@@ -91,6 +87,47 @@ public class EasyAuctionManager {
 	public void supprimerUtilisateur(int idUtilisateur) throws BusinessException{
 		this.easyAuctionDAO.deleteUtilisateur(idUtilisateur);
 	}
+
+	/**
+	 * @param noUtilisateur 
+	 * 
+	 */
+	public void updateUtilisateur(int noUtilisateur, String pseudo,String prenom,
+			String telephone,String codePostal,String motDePasse,
+			String confirmation,String nom,String email,String rue,
+			String ville) throws BusinessException {
+		BusinessException businessException = new BusinessException();
+		//this.validerNomArticle(nomArticle, businessException);
+		Utilisateur utilisateur= new Utilisateur();		
+		
+		if(!businessException.hasErreurs())
+		{
+			utilisateur.setNoUtilisateur(noUtilisateur);
+			utilisateur.setPseudo(pseudo);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setTelephone(telephone);
+			utilisateur.setCodePostal(codePostal);
+			utilisateur.setMotDePasse(motDePasse);
+			utilisateur.setNom(nom);
+			utilisateur.setEmail(email);
+			utilisateur.setRue(rue);
+			utilisateur.setVille(ville);
+			this.easyAuctionDAO.updateUtilisateur(utilisateur);
+			
+		} else {
+			throw businessException;
+		}
+		
+	}
+
+		public List<Categorie> selectionnerToutesCategories() throws BusinessException {
+			return this.easyAuctionDAO.selectAllCategories();
+		}
+
+		/**
+		 * @return
+		 */
+
 	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException

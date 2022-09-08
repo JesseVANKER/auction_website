@@ -1,6 +1,10 @@
 package fr.eni.easyauction.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,24 +28,32 @@ public class SupprimerCompte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
+        HttpSession session = request.getSession();
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateurCourant");
+        System.out.println(utilisateur);
+		try {
+			easyAuctionManager.supprimerUtilisateur(utilisateur.getNoUtilisateur());
+			session.invalidate();
+			RequestDispatcher rd = request.getRequestDispatcher("");
+			rd.forward(request, response);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+			RequestDispatcher rd = request.getRequestDispatcher("/SupprimerCompte");
+			rd.forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
-        HttpSession session = request.getSession();
-        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateurCourant");
-		try {
-			easyAuctionManager.supprimerUtilisateur(utilisateur.getNoUtilisateur());
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
 
-		doGet(request, response);
+
+
+		
+
 	}
 
 }

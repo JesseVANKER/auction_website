@@ -60,6 +60,11 @@ public class Categorie {
 		ListeArticleVendu = listeArticleVendu;
 	}
 	
+	public Categorie(int noCategorie, String libelle) {
+		this.noCategorie = noCategorie;
+		this.libelle = libelle;
+	}
+	
 	public Categorie() {
 		super();
 		

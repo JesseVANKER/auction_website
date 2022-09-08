@@ -10,11 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Sign Up</h1>
+  <header>
+    <h1 id='title'>INSCRIPTION</h1>
 <br>
-<br>
-
-<h2>Mon profil</h2>
+</header>
 
 
 <%
@@ -33,9 +32,9 @@
 			}
 		%>
 
+<div id='survey-form'>
 
-
-<form id='survey-form' action="<%=request.getContextPath()%>/ServletSignUp" method="post">
+<form  action="<%=request.getContextPath()%>/ServletSignUp" method="post">
         <div class='form-input'>
            
 
@@ -93,11 +92,12 @@
           <button type='submit' id='submit'>Envoyer</button>
         </div>
         
-        <div class='form-input'>
-          <button id="annuler" href="<%=request.getContextPath()%>">Annuler</button>
-         </div>
 
   </form>
+		<a class="nav-link" id="retour" href="<%=request.getContextPath()%>">Continuer sans créer de compte</a>
+</div>
+
+
 
 </body>
 </html>

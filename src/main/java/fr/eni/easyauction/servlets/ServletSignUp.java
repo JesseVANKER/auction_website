@@ -151,7 +151,7 @@ public class ServletSignUp extends HttpServlet {
 				easyAuctionManager.ajouterUtilisateur(pseudo, prenom, telephone, codePostal, motDePasse, confirmation,
 						nom, email, rue, ville);
 				// Si tout se passe bien, je vais vers la page de consultation:
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("");
 				rd.forward(request, response);
 			} catch (BusinessException e) {
 				// Sinon je retourne à la page d'ajout pour indiquer les problèmes:

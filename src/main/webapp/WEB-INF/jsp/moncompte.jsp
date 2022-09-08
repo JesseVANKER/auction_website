@@ -29,61 +29,63 @@
 
 
 <form action="<%=request.getContextPath()%>/MonCompte" method="post">
-	<div>
-        <label for="pseudo">Pseudo (en alpha/numérique) :</label>
-        <input type="text" id="name" name="pseudo" value="meeter" required pattern="[a-zA-Z0-9]+">
-    </div>
+
     
-    <div>
-        <label for="prenom">Prénom : </label>
-        <input type="text" id="mail" name="prenom" value="maxime">
-    </div>
-    
-    <div>
-        <label for="telephone">Téléphone : </label>
-        <input type="tel" id="mail" name="telephone" value="0781726621" maxlength="10" 
-        >
-    </div>
-    
-    <div>
-        <label for="codePostal">Code postal : </label>
-        <input type="number" id="mail" name="codePostal" value="22440">
-    </div>
-    
-     <div>
-        <label for="motDePasseActuel">Mot de passe actuel: </label>
-        <input type="password" id="mail" name="motDePasseActuel" value="azerty">
-    </div>
-    
-    <div>
-        <label for="motDePasse">Nouveau mot de passe : </label>
-        <input type="password" id="mail" name="motDePasse" value="azerty">
-    </div>
-    
-    <div>
-        <label for="confirmation">Confirmation mdp : </label>
-        <input type="password" id="mail" name="confirmation" value="azerty">
-    </div>
-    
-    <div>
-        <label for="nom">Nom : </label>
-        <input type="text" id="mail" name="nom" value="rousseau">
-    </div>
-    
-    <div>
-        <label for="email">Email : </label>
-        <input type="email" id="mail" name="email" value="maxime.rousseau99@gmail.com">
-    </div>
-    
-    <div>
-        <label for="rue">Rue : </label>
-        <input type="text" id="mail" name="rue" value="25">
-    </div>
-    
-    <div>
-        <label for="ville">Ville : </label>
-        <input type="text" id="mail" name="ville" value="rennes">
-    </div>
+    	<div class='form-input'>
+        	<label for="pseudo">Pseudo</label>
+            <input type="text" id="name" placeholder='Pseudo' class='form-input-size' name="pseudo" pattern="[a-zA-Z0-9]+">
+        </div>
+
+        <div class='form-input'>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder='Email' class='form-input-size' >
+        </div>
+
+        <div class='form-input'>
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder='Nom' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder='Prenom' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="mail" name="telephone" placeholder='Téléphone' class='form-input-size' maxlength="10" 
+            >
+        </div>
+
+        <div class='form-input'>
+          <label for="rue">Rue</label>
+          <input type="text" id="rue" name="rue" placeholder='Rue' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+          <label for="ville">Ville</label>
+          <input type="text" id="ville" name="ville" placeholder='Ville' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+          <label for="codePostal">Code postal</label>
+          <input type="text" id="codePostal" name="codePostal" placeholder='Code Postal' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+          <label for="motDePasse">Nouveau Mot de passe</label>
+          <input type="text" id="motDePasse" name="motDePasse" placeholder='Nouveau Mot De Passe' class='form-input-size'>
+        </div>
+
+        <div class='form-input'>
+          <label for="confirmation">Confirmation Nouveau MDP</label>
+          <input type="text" id="confirmation" name="confirmation" placeholder='Confirmation nouveau MDP' class='form-input-size'>
+        </div>
+        
+          <div class='form-input'>
+	        <label for="motDePasseActuel">Mot de passe actuel </label>
+	        <input type="password" id="mail" name="motDePasseActuel" placeholder='Mot de passe actuel' class='form-input-size' required>
+	    </div>
     
      <div>
     <input type="submit" value="Envoyer">

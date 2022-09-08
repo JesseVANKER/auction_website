@@ -14,17 +14,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 
-
-
-	
-
-=======
 	<c:if test="${!empty utilisateurCourant}">
 	  <p>Bonjour ${utilisateurCourant.pseudo}</p>
 	 </c:if>
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+
 	<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="background-color: rgb(132, 91, 179)">
 
         <div class="container">
@@ -55,71 +49,68 @@
     </nav>	
 
 	
-    
-<<<<<<< HEAD
-     <h2>BONJOUR</h2>
+          
+       <br>                       
+
+	
+    <h1>Liste item enchères</h1>
+
           
        <br>                       
                               
       <c:if test="${!empty listeCodesErreur}">
-			<div class="alert alert-danger" role="alert">
-			  <strong>Erreur!</strong>
-			  <ul>
-			  	<c:forEach var="code" items="${listeCodesErreur}">
-			  		<li>${LecteurMessage.getMessageErreur(code)}</li>
-			  	</c:forEach>
-			  </ul>
-			</div>
-		</c:if>
-		
-		 
-		
-		<table>
-			<thead>
-				<tr>
-					<td>Numéro Enchere </td>
-					<td>Date Enchere </td>
-					<td>Montant Enchere </td>
-					<td> Utilisateur</td>
-				</tr>
-			</thead>
-				<%
-					List<ArticleVendu> listeArticleVendu = (List<ArticleVendu>) request.getAttribute("listeArticleVendu");
-					if(listeArticleVendu!=null && listeArticleVendu.size()>0)
-					{
-				%>
-						<tbody>
-							<%
-							for(ArticleVendu article : listeArticleVendu)
-							{
-							%>
-								<tr>
-									
-									<td><%=article.getNomArticle()%> </td>
-									<td><%=article.getDateFinEncheres()%> </td>
-									<td><%=article.getMiseAPrix()%> </td>
-									<td><%=article.getUtilisateur().getPseudo()%> </td>
-								
-									
-								
-								</tr>
-							
-						</tbody>
-				<%
-							}
-					}
-				%>
-	
-			
-			
-		</table>
-	                  
-=======
-<h1>Liste item enchères</h1>
-                        
->>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+            <div class="alert alert-danger" role="alert">
+              <strong>Erreur!</strong>
+              <ul>
+                  <c:forEach var="code" items="${listeCodesErreur}">
+                      <li>${LecteurMessage.getMessageErreur(code)}</li>
+                  </c:forEach>
+              </ul>
+            </div>
+        </c:if>
         
-
+         
+        
+        <table>
+            <thead>
+                <tr>
+                    <td>Numéro Enchere </td>
+                    <td>Date Enchere </td>
+                    <td>Montant Enchere </td>
+                    <td> Utilisateur</td>
+                </tr>
+            </thead>
+                <%
+                    List<ArticleVendu> listeArticleVendu = (List<ArticleVendu>) request.getAttribute("listeArticleVendu");
+                    if(listeArticleVendu!=null && listeArticleVendu.size()>0)
+                    {
+                %>
+                        <tbody>
+                            <%
+                            for(ArticleVendu article : listeArticleVendu)
+                            {
+                            %>
+                                <tr>
+                                    
+                                    <td><%=article.getNomArticle()%> </td>
+                                    <td><%=article.getDateFinEncheres()%> </td>
+                                    <td><%=article.getMiseAPrix()%> </td>
+                                    <td><%=article.getUtilisateur().getPseudo()%> </td>
+                                
+                                    
+                                
+                                </tr>
+                            
+                        </tbody>
+                <%
+                            }
+                    }
+                %>
+    
+            
+            
+        </table>
+                      
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

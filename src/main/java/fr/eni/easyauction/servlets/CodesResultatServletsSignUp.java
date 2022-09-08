@@ -35,6 +35,7 @@ public abstract class CodesResultatServletsSignUp {
 	 */
 	public static final int CONFIRMATION_ERREUR=30005;
 	
+	public static final int NOUVEAU_MDP_ERREUR=30014;
 	/**
 	 * Nom vide
 	 */
@@ -75,5 +76,17 @@ public abstract class CodesResultatServletsSignUp {
 	 * le compte est déjà existant 
 	 */
 	public static final int COMPTE_EXISTANT_ERREUR=30013;
+
+	public static final int NOM_ARTICLE_ERREUR = 30014;
+
+	public static final int DESCRIPTION_ARTICLE_ERREUR = 30015;
+
+	public static final int DATE_DEBUT_ERREUR = 30016;
+
+	public static final int DATE_FIN_ERREUR = 30017;
+
+	public static final int PRIX_DEPART_ERREUR = 30018;
+	
+	
 
 }
