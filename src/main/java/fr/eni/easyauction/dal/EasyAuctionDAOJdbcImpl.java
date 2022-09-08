@@ -29,16 +29,15 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	private static final String INSERT_UTILISATEUR = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String UPDATE_UTILISATEUR= "update UTILISATEUR set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postale=?, ville=?, mot_de_passe=? where no_utilisateur=?";
 	private static final String DELETE_UTILISATEUR = "delete from UTILISATEURS where no_utilisateur=?";
-	private static final String SELECT_UTILISATEUR_BY_ID = "SELECT date_enchere, montant_enchere, no_article, no_utilisateur  from ENCHERES where no_enchere=?";
+	private static final String SELECT_ENCHERE_BY_ID = "SELECT date_enchere, montant_enchere, no_article, no_utilisateur  from ENCHERES where no_enchere=?";
 	private static final String SELECT_ALL_USER = "SELECT * from UTILISATEURS";
-	private static final String SELECT_ENCHERE_BY_ID = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe from UTILISATEURS where no_utilisateur=?";
+	private static final String SELECT_UTILISATEUR_BY_ID = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe from UTILISATEURS where no_utilisateur=?";
 	private static final String SELECT_ALL_ENCHERE ="SELECT * FROM ENCHERES";
 	private static final String SELECT_ALL_ENCHERE_BY_ID ="SELECT * FROM ENCHERES WHERE no_article=?";
 	private static final String SELECT_ARTICLE_BY_ID ="SELECT  no_article, nom_article ,  description, date_debut_encheres, date_fin_encheres, prix_initial ,  prix_vente,  no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article=?";
 	
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
 	private static final String SELECT_ENCHERE = "select date_enchere, montant_enchere, e.no_article, e.no_utilisateur, u.pseudo, a.nom_article FROM ENCHERES e INNER JOIN UTILISATEURS u on e.no_utilisateur=u.no_utilisateur INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article WHERE no_enchere=?;";
-			
 	 /* ----------- ARTICLES --------------*/
 	@Override
 	public List<ArticleVendu> selectAllArticle() throws BusinessException {
@@ -510,7 +509,6 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		}
 		
 	}
-
 
 	
 //	@Override

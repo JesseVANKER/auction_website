@@ -82,7 +82,9 @@ public class EasyAuctionManager {
 		return this.easyAuctionDAO.selectAllEnchere();
 	}
 	
-
+	public void supprimerUtilisateur(int idUtilisateur) throws BusinessException{
+		this.easyAuctionDAO.deleteUtilisateur(idUtilisateur);
+	}
 	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException
