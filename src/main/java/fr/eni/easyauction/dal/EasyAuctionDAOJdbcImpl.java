@@ -40,8 +40,11 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
 	private static final String SELECT_ENCHERE = "select date_enchere, montant_enchere, e.no_article, e.no_utilisateur, u.pseudo, a.nom_article FROM ENCHERES e INNER JOIN UTILISATEURS u on e.no_utilisateur=u.no_utilisateur INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article WHERE no_enchere=?;";
+<<<<<<< HEAD
 	private static final String SELECT_CATEGORIE_BY_ID = "SELECT  libelle FROM CATEGORIES WHERE no_categorie=?";
 	
+=======
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	 /* ----------- ARTICLES --------------*/
 	@Override
 	public List<ArticleVendu> selectAllArticle() throws BusinessException {
@@ -530,6 +533,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		
 	}
 
+<<<<<<< HEAD
 	
 	@Override
 	public Categorie selectCategorieById(int idCategorie) throws BusinessException {
@@ -563,6 +567,8 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		return categorie;
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	
 //	@Override
 //	public Enchere selectEnchere(int noEnchere) throws BusinessException {

@@ -83,9 +83,11 @@ public class EasyAuctionManager {
 		return this.easyAuctionDAO.selectAllEnchere();
 	}
 	
+
 	public Categorie selectionnerCategorieById(int idCategorie) throws BusinessException{
 		return this.easyAuctionDAO.selectCategorieById(idCategorie);
 	}
+
 	public void supprimerUtilisateur(int idUtilisateur) throws BusinessException{
 		this.easyAuctionDAO.deleteUtilisateur(idUtilisateur);
 	}

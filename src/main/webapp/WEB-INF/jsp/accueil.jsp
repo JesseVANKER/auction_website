@@ -10,15 +10,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="css/styles.css" rel="stylesheet" />
+<link href="css/navbar.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 
 
 
 	
 
+=======
+	<c:if test="${!empty utilisateurCourant}">
+	  <p>Bonjour ${utilisateurCourant.pseudo}</p>
+	 </c:if>
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
 	<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="background-color: rgb(132, 91, 179)">
 
         <div class="container">
@@ -30,16 +36,18 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                		<c:if test="${!empty utilisateurCourant}">
-		                 <li class="nav-item"><a class="nav-link">Bonjour ${utilisateurCourant.pseudo}</a></li>
-		                 <li class="nav-item"><a class="nav-link" href="#mystory">MES ENCHERES</a></li>
-		                 <li class="nav-item"><a class="nav-link" href="#mystory">MESVENTES</a></li>
-		                 <li class="nav-item"><a class="nav-link" href="#mystory">MON COMPTE</a></li>
-        		         <li class="nav-item"><a class="nav-link" href="#mystory">DECONNEXION</a></li>
+               			
+			        
+			                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/MesEncheres">MES ENCHERES</a></li>
+			                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/MesVentes">MESVENTES</a></li>
+			                 <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/MonCompte">MON COMPTE</a></li>
+		       		         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/Deconnexion">DECONNEXION</a></li>
+        		         
 					</c:if>
 					
 					<c:if test="${empty utilisateurCourant}">
-						  <li><a href="<%=request.getContextPath()%>/ServletLogin">Login</a></li>
-				  		  <li><a href="<%=request.getContextPath()%>/ServletSignUp">Sign Up</a></li>
+						  <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/ServletLogin">Login</a></li>
+				  		  <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/ServletSignUp">Sign Up</a></li>
 					</c:if>
                 </ul>
             </div>
@@ -48,6 +56,7 @@
 
 	
     
+<<<<<<< HEAD
      <h2>BONJOUR</h2>
           
        <br>                       
@@ -105,6 +114,10 @@
 			
 		</table>
 	                  
+=======
+<h1>Liste item enchères</h1>
+                        
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
         
 
 
