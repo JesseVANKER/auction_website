@@ -16,7 +16,11 @@
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: rgb(132, 91, 179)">
+
+	
+
+	<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="background-color: rgb(132, 91, 179)">
+
         <div class="container">
             <a class="navbar-brand" href="#page-top"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                		<c:if test="${!empty utilisateurCourant}">
-		                 <li class="nav-item"><a>Bonjour${utilisateurCourant.pseudo}</a></li>
+		                 <li class="nav-item"><a class="nav-link">Bonjour ${utilisateurCourant.pseudo}</a></li>
 		                 <li class="nav-item"><a class="nav-link" href="#mystory">MES ENCHERES</a></li>
 		                 <li class="nav-item"><a class="nav-link" href="#mystory">MESVENTES</a></li>
 		                 <li class="nav-item"><a class="nav-link" href="#mystory">MON COMPTE</a></li>
@@ -43,9 +47,67 @@
     </nav>	
 
 	
+    
+     <h2>BONJOUR</h2>
+          
+       <br>                       
+                              
+      <c:if test="${!empty listeCodesErreur}">
+			<div class="alert alert-danger" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	<c:forEach var="code" items="${listeCodesErreur}">
+			  		<li>${LecteurMessage.getMessageErreur(code)}</li>
+			  	</c:forEach>
+			  </ul>
+			</div>
+		</c:if>
+		
+		 
+		
+		<table>
+			<thead>
+				<tr>
+					<td>Numéro Enchere </td>
+					<td>Date Enchere </td>
+					<td>Montant Enchere </td>
+					<td> Utilisateur</td>
+				</tr>
+			</thead>
+				<%
+					List<ArticleVendu> listeArticleVendu = (List<ArticleVendu>) request.getAttribute("listeArticleVendu");
+					if(listeArticleVendu!=null && listeArticleVendu.size()>0)
+					{
+				%>
+						<tbody>
+							<%
+							for(ArticleVendu article : listeArticleVendu)
+							{
+							%>
+								<tr>
+									
+									<td><%=article.getNomArticle()%> </td>
+									<td><%=article.getDateFinEncheres()%> </td>
+									<td><%=article.getMiseAPrix()%> </td>
+									<td><%=article.getUtilisateur().getPseudo()%> </td>
+								
+									
+								
+								</tr>
+							
+						</tbody>
+				<%
+							}
+					}
+				%>
 	
-	
-	
+			
+			
+		</table>
+	                  
+        
+
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="js/scripts.js"></script>

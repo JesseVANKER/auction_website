@@ -39,8 +39,10 @@ public class ServletAccueil extends HttpServlet {
 		List<Integer> listeCodesErreur=new ArrayList<>();
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 		List<ArticleVendu> listeArticleVendu=null;
+		List<Utilisateur> listeUtilisateur=null;
 		try {
 			listeArticleVendu = easyAuctionManager.selectionnerTousLesArticles();
+			listeUtilisateur = easyAuctionManager.selectionnerTousLesUtilisateurs();
 				
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -48,6 +50,7 @@ public class ServletAccueil extends HttpServlet {
 		}
 		
 		request.setAttribute("listeArticleVendu", listeArticleVendu);
+		System.out.println(listeArticleVendu);
 
 
 		HttpSession session = request.getSession();

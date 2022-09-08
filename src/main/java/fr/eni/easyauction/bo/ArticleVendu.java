@@ -248,6 +248,52 @@ public class ArticleVendu {
 		
 	}
 
+	/**
+	 * Constructeur.
+	 * @param int1
+	 * @param string
+	 * @param string2
+	 * @param localDate
+	 * @param localDate2
+	 * @param int2
+	 * @param int3
+	 * @param int4
+	 * @param int5
+	 * @param string3
+	 */
+	public ArticleVendu(int int1, String string, String string2, LocalDate localDate, LocalDate localDate2, int int2,
+			int int3, int int4, int int5, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Constructeur.
+	 * @param int1
+	 * @param string
+	 * @param string2
+	 * @param localDate
+	 * @param localDate2
+	 * @param int2
+	 * @param int3
+	 * @param utilisateur2
+	 * @param categorie2
+	 */
+	
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente,  Utilisateur utilisateur,
+			 Categorie categorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		
+	}
 
 
 	

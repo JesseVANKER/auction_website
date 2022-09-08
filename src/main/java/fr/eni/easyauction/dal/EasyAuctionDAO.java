@@ -7,6 +7,7 @@ import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Categorie;
 import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
 
@@ -36,16 +37,42 @@ public interface EasyAuctionDAO {
 	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
 
-	
 
 	
+
 
 	/* ----------- ENCHERES --------------*/
 	void insertEnchere(Enchere enchere) throws BusinessException;
-	
 	List<Enchere> selectAllEnchere() throws BusinessException;
 	Enchere selectEnchereById(int idEnchere) throws BusinessException;
 	List<Enchere> selectAllEnchereById(int idEnchere) throws BusinessException;
+	
+	
+	Categorie selectCategorieById(int idUtilisateur) throws BusinessException;
+	
+	
+	/**
+	 * @param idArticle
+<<<<<<< HEAD
+=======
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * @param idArticle
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * Méthode en charge de
+	 * @param idUtilisateur
+	 * @return
+	 * @throws BusinessException
+	 */
+
+
+
+    
 	/**
 	 * @param idArticle
 	 * @throws BusinessException
@@ -59,6 +86,20 @@ public interface EasyAuctionDAO {
 	 * @throws BusinessException
 	 */
 	/**
+	 * @param enchere
+>>>>>>> branch 'master' of https://github.com/JesseVANKER/auction_website.git
+	 * @throws BusinessException
+	 */
+	/**
+	 * @param idArticle
+	 * @throws BusinessException
+	 */
+	/**
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+<<<<<<< HEAD
 
 	 * Méthode en charge de
 	 * @return
@@ -84,6 +125,7 @@ public interface EasyAuctionDAO {
 	 * @throws BusinessException
 	 */
 	
+
 
 	
 

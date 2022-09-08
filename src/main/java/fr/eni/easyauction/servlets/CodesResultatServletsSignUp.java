@@ -75,7 +75,5 @@ public abstract class CodesResultatServletsSignUp {
 	 * le compte est déjà existant 
 	 */
 	public static final int COMPTE_EXISTANT_ERREUR=30013;
-	
-	
-	
+
 }

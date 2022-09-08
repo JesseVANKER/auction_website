@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.eni.easyauction.BusinessException;
 import fr.eni.easyauction.bo.ArticleVendu;
+import fr.eni.easyauction.bo.Categorie;
 import fr.eni.easyauction.bo.Enchere;
 import fr.eni.easyauction.bo.Utilisateur;
 import fr.eni.easyauction.dal.DAOFactory;
@@ -82,7 +83,12 @@ public class EasyAuctionManager {
 		return this.easyAuctionDAO.selectAllEnchere();
 	}
 	
-
+	public Categorie selectionnerCategorieById(int idCategorie) throws BusinessException{
+		return this.easyAuctionDAO.selectCategorieById(idCategorie);
+	}
+	public void supprimerUtilisateur(int idUtilisateur) throws BusinessException{
+		this.easyAuctionDAO.deleteUtilisateur(idUtilisateur);
+	}
 	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException
