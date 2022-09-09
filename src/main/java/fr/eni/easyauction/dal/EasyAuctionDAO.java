@@ -29,6 +29,7 @@ public interface EasyAuctionDAO {
 	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
 	void deleteArticle(int idArticle) throws BusinessException;
 	ArticleVendu selectArticleById(int idArticle) throws BusinessException;
+	List<ArticleVendu> selectAllArticleByUser(int idUtilisateur) throws BusinessException;
 	
 	 /* ----------- UTILISATEURS --------------*/
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
