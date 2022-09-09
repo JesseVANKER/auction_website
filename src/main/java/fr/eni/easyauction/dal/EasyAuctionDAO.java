@@ -48,17 +48,22 @@ public interface EasyAuctionDAO {
 	Enchere selectEnchereById(int idEnchere) throws BusinessException;
 	List<Enchere> selectAllEnchereById(int idEnchere) throws BusinessException;
 	
+	List<Enchere> selectAllEncheresByUser(int idUtilisateur) throws BusinessException;
+	
+	
 	/* ----------- CATEGORIES --------------*/
 	Categorie selectCategorieById(int idUtilisateur) throws BusinessException;
 
 	List<Categorie> selectAllCategories() throws BusinessException;
+
+	
+	List<ArticleVendu> selectAllArticleByCategorie(int idCategorie) throws BusinessException;
 	/**
 	 * @param idUtilisateur
 	 * @return
 	 * @throws BusinessException
 	 */
 
-	
 	
 	/**
 	 * @param idArticle

@@ -1,3 +1,4 @@
+<%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
 <%@page import="fr.eni.easyauction.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
@@ -21,7 +22,21 @@
 	
     <c:if test="${!empty utilisateurCourant}">   		
 
-		
+		<%
+			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
+			if(listeCodesErreur!=null)
+			{
+		%>
+				<p style="color:red;">Erreur, l'utilisateur n'a pas pu être ajouté :</p>
+		<%
+				for(int codeErreur:listeCodesErreur)
+				{
+		%>
+					<p><%=LecteurMessage.getMessageErreur(codeErreur)%></p>
+		<%	
+				}
+			}
+		%>
 		
 
   		 <div class="container">
@@ -33,12 +48,12 @@
        	
            <div class='form-input'>
                <label id='name-label'>Nom</label>
-               <input type='text' id='nom'name='' placeholder="Nom de l'article" class='form-input-size' required />
+               <input type='text' id='nom' name='nom' placeholder="Nom de l'article" class='form-input-size' required />
            </div>
            
            <div class='form-input'>
                <label id='email-label'>Description</label>
-               <textarea type='text' id='description' name='' placeholder='Enter la description du produit' required ></textarea>
+               <textarea id='description' name='description' placeholder='Enter la description du produit' required ></textarea>
            </div>
            
 

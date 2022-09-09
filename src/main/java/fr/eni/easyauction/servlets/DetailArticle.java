@@ -1,7 +1,6 @@
 package fr.eni.easyauction.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,10 +17,10 @@ import fr.eni.easyauction.bo.ArticleVendu;
 import fr.eni.easyauction.bo.Utilisateur;
 
 /**
- * Servlet implementation class MesVentes
+ * Servlet implementation class DetailArticle
  */
-@WebServlet("/MesVentes")
-public class MesVentes extends HttpServlet {
+@WebServlet("/DetailArticle")
+public class DetailArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -29,34 +28,36 @@ public class MesVentes extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
-		List<ArticleVendu> listeArticleVenduByUser=null;
+		ArticleVendu articleCourant = new ArticleVendu();
 		
         HttpSession session = request.getSession();
         Utilisateur utilisateurCourant = (Utilisateur) session.getAttribute("utilisateurCourant");
         
+        int idArticle = Integer.parseInt(request.getParameter("id"));
+        
 		try {
-			listeArticleVenduByUser = easyAuctionManager.selectionnerTousLesArticlesByUser(utilisateurCourant.getNoUtilisateur());
-			request.setAttribute("listeArticleVenduByUser", listeArticleVenduByUser);
+			articleCourant = easyAuctionManager.selectionnerArticlebyId(idArticle);
+			request.setAttribute("articleCourant", articleCourant);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
+
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailarticle.jsp");
 			rd.forward(request, response);
 				
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/detailarticle.jsp");
+			rd.forward(request, response);
 		}
 		
-	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
 	}
 
 }

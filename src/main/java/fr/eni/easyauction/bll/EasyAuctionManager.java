@@ -124,6 +124,26 @@ public class EasyAuctionManager {
 			return this.easyAuctionDAO.selectAllCategories();
 		}
 
+		public List<ArticleVendu> selectionnerTousLesArticlesByCategorie(int idCategorie) throws BusinessException {
+			
+			return this.easyAuctionDAO.selectAllArticleByCategorie(idCategorie);
+		}
+
+		/**
+		 * @param idArticle 
+		 * @return
+		 * @throws BusinessException 
+		 */
+		public ArticleVendu selectionnerArticleById(int idArticle) throws BusinessException {
+
+			return this.easyAuctionDAO.selectArticleById(idArticle);
+		}
+
+		public List<Enchere> selectionnerTousLesEncheresByUser(int noUtilisateur) throws BusinessException {
+
+			return this.easyAuctionDAO.selectAllEncheresByUser(noUtilisateur);
+		}
+
 		/**
 		 * @return
 		 */

@@ -62,7 +62,7 @@ public class NouvelArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		List<Categorie> listeCategories=null;
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 		
@@ -98,7 +98,7 @@ public class NouvelArticle extends HttpServlet {
 			if(categorieTemp.getLibelle().equals(request.getParameter("categorie")))
 				categorie=categorieTemp;
 		}
-		System.out.println(categorie);
+		ArticleVendu articleAAjouter = new ArticleVendu(nomArticle, description, dateDebut, dateFin, prixDepart,utilisateur, categorie);
 
 
 		// Vérification des données
@@ -108,20 +108,17 @@ public class NouvelArticle extends HttpServlet {
 		if (description == null || description.trim().isEmpty()) {
 			listeCodesErreur.add(CodesResultatServletsSignUp.DESCRIPTION_ARTICLE_ERREUR);
 		}
-		if (dateDebut == null || dateDebut.trim().isEmpty()) {
+		if (dateDebut == null || dateDebut.isBefore(LocalDate.now())) {
 			listeCodesErreur.add(CodesResultatServletsSignUp.DATE_DEBUT_ERREUR);
 		}
-		if (dateFin == null || dateFin.trim().isEmpty()) {
+		if (dateFin == null || dateFin.isBefore(LocalDate.now())) {
 			listeCodesErreur.add(CodesResultatServletsSignUp.DATE_FIN_ERREUR);
 		}
-		if (prixDepart == null || prixDepart.trim().isEmpty()) {
+		if (prixDepart < 0) {
 			listeCodesErreur.add(CodesResultatServletsSignUp.PRIX_DEPART_ERREUR);
 		}
 		
-
-		// J'appelle l'instance
-		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
-
+		
 		// Si un code d'erreur est trouvé
 		if (listeCodesErreur.size() > 0) {
 			// Je renvoie les codes d'erreurs
@@ -132,18 +129,18 @@ public class NouvelArticle extends HttpServlet {
 		} 
 		else {
 			
-			//ArticleVendu articleNouveau = new ArticleVendu(nomArticle, description, dateDebut, dateFin, prixDepart, utilisateur, categorie)
 			try {
+				System.out.println(articleAAjouter);
 				//ajout de l'utilisateur dans la base de donnée
-				easyAuctionManager.ajouterArticle(null);
+				easyAuctionManager.ajouterArticle(articleAAjouter);
 				// Si tout se passe bien, je vais vers la page de consultation:
-				RequestDispatcher rd = request.getRequestDispatcher("");
+				RequestDispatcher rd = request.getRequestDispatcher("/MesVentes");
 				rd.forward(request, response);
 			} catch (BusinessException e) {
 				// Sinon je retourne à la page d'ajout pour indiquer les problèmes:
 				e.printStackTrace();
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mesventes.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp");
 				rd.forward(request, response);
 			}
 		}

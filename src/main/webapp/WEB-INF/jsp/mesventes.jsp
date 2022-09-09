@@ -7,11 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/mesventes.css" rel="stylesheet" />
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <title>Mes Ventes</title>
 </head>
 <body>
 
-	<h2>MES VENTES</h2>
+
+  <header>
+    <h1 id='title'>MES VENTES</h1>
+	<br>
+	</header>
 	
 	<c:if test="${empty utilisateurCourant}">
 		  <p>Pour voir vos ventes vous devez vous connecter</p>
@@ -28,6 +36,8 @@
 			</form>   
 	</c:if>
 	
+            <div class="container">
+	      	<div class="row g-3">
                <%
                     List<ArticleVendu> listeArticleVenduByUser = (List<ArticleVendu>) request.getAttribute("listeArticleVenduByUser");
                     if(listeArticleVenduByUser!=null && listeArticleVenduByUser.size()>0)
@@ -36,14 +46,25 @@
                         for(ArticleVendu article : listeArticleVenduByUser)
                         {
                %>   
-                           <%=article.getNomArticle()%>
-                         	<%=article.getDateFinEncheres()%>
-                           <%=article.getMiseAPrix()%>
-                           <br>
+               
+
+						        <div class="col-12 col-md-6 col-lg-4">
+						          <div class="card" >
+						            <img src="img/htmlcss2reduce.jpg" class="card-img-top" alt="...">
+						            <div class="card-body">
+						              <h5 class="card-title"><%=article.getNomArticle()%></h5>
+						              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						              <a href="<%=request.getContextPath()%>/DetailArticle?id=<%=article.getNoArticle()%>" class="btn btn-primary">Go somewhere</a>
+						            </div>
+						          </div>
+						        </div>
+
                 <%
                          }
                     }
                 %>
-
+        	</div>
+			</div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

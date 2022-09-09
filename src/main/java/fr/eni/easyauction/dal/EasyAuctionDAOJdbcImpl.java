@@ -24,10 +24,12 @@ import fr.eni.easyauction.bo.Utilisateur;
  */
 public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	
-	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie;";
-	private static final String SELECT_ALL_ARTICLES_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie where a.no_utilisateur=?;";
+	private static final String SELECT_ALL_ARTICLES = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie LEFT JOIN ENCHERES e ON e.no_article=a.no_article;";
+	private static final String SELECT_ALL_ARTICLES_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie LEFT JOIN RETRAITS r ON a.no_article = r.no_article where a.no_utilisateur=?;";
+	private static final String SELECT_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie where a.no_article=?;";
 	
-	private static final String INSERT_ARTICLE = "insert into ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, no_utilisateur, no_categorie) values(?,?,?,?,?,?);";
+	private static final String SELECT_ALL_ENCHERES_USER = "SELECT * FROM ENCHERES e LEFT JOIN UTILISATEURS u ON  e.no_utilisateur = u.no_utilisateur LEFT JOIN ARTICLES_VENDUS a ON  a.no_article = e.no_article LEFT JOIN CATEGORIES c ON a.no_categorie = c.no_categorie LEFT JOIN RETRAITS r ON a.no_article = r.no_article where a.no_utilisateur=?;";
+	private static final String INSERT_ARTICLE = "insert into ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, no_utilisateur, no_categorie) values(?,?,?,?,?,?,?);";
 	private static final String UPDATE_PRIX_ARTICLE="update ARTICLES_VENDUS set prix_vente=? where no_article=?";
 	private static final String DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?";
 	private static final String INSERT_UTILISATEUR = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
@@ -40,105 +42,62 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	private static final String SELECT_UTILISATEUR_BY_ID = "SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe from UTILISATEURS where no_utilisateur=?";
 	private static final String SELECT_ALL_ENCHERE ="SELECT * FROM ENCHERES";
 	private static final String SELECT_ALL_ENCHERE_BY_ID ="SELECT * FROM ENCHERES WHERE no_article=?";
-	private static final String SELECT_ARTICLE_BY_ID ="SELECT  no_article, nom_article ,  description, date_debut_encheres, date_fin_encheres, prix_initial ,  prix_vente,  no_utilisateur, no_categorie FROM ARTICLES_VENDUS WHERE no_article=?";
+
 
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
-	private static final String SELECT_ENCHERE = "select date_enchere, montant_enchere, e.no_article, e.no_utilisateur, u.pseudo, a.nom_article FROM ENCHERES e INNER JOIN UTILISATEURS u on e.no_utilisateur=u.no_utilisateur INNER JOIN ARTICLES_VENDUS a on e.no_article=a.no_article WHERE no_enchere=?;";
 	private static final String SELECT_CATEGORIE_BY_ID = "SELECT  libelle FROM CATEGORIES WHERE no_categorie=?";
-	
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES;";
+	private static final String SELECT_ALL_ARTICLES_BY_CATEGORIE = "SELECT * FROM ARTICLES_VENDUS a LEFT JOIN UTILISATEURS u ON  a.no_utilisateur = u.no_utilisateur LEFT JOIN CATEGORIES c ON  a.no_categorie = c.no_categorie WHERE a.no_categorie=?";
 
 	 /* ----------- ARTICLES --------------*/
 	@Override
 	public List<ArticleVendu> selectAllArticle() throws BusinessException {
-        List<ArticleVendu> listesArticles = new ArrayList<ArticleVendu>();
-        Utilisateur utilisateur = new Utilisateur();
-        Categorie categorie = new Categorie();
-        try(Connection cnx = ConnectionProvider.getConnection())
-        {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES);
-            ResultSet rs = pstmt.executeQuery();
-            while(rs.next())
-            {
-               utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                
-                utilisateur.setPseudo(rs.getString("pseudo"));
-                utilisateur.setNom(rs.getString("nom"));
-                utilisateur.setPrenom(rs.getString("prenom"));
-                utilisateur.setEmail(rs.getString("email"));
-                utilisateur.setTelephone(rs.getString("telephone"));
-                utilisateur.setRue(rs.getString("rue"));
-                utilisateur.setCodePostal(rs.getString("code_postal"));
-                utilisateur.setVille(rs.getString("ville"));
-                utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-                
-                categorie.setNoCategorie(rs.getInt("no_categorie"));
-                categorie.setLibelle(rs.getString("libelle"));
-                
-                listesArticles.add(new ArticleVendu(
-                    rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
-                    rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
-                    rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
-                    categorie));
+		List<ArticleVendu> listesArticles = new ArrayList<ArticleVendu>();
 
-           }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            BusinessException businessException = new BusinessException();
-            businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
-            throw businessException;
-        }
-        
-        return listesArticles;
-    }
-	
-	@Override
-	public List<ArticleVendu> selectAllArticleByUser(int idUtilisateur) throws BusinessException {
-        List<ArticleVendu> listesArticles = new ArrayList<ArticleVendu>();
-        Utilisateur utilisateur = new Utilisateur();
-        Categorie categorie = new Categorie();
-        try(Connection cnx = ConnectionProvider.getConnection())
-        {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES_UTILISATEUR);
-			pstmt.setInt(1, idUtilisateur);
-            ResultSet rs = pstmt.executeQuery();
-            while(rs.next())
-            {
-               utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
-                
-                utilisateur.setPseudo(rs.getString("pseudo"));
-                utilisateur.setNom(rs.getString("nom"));
-                utilisateur.setPrenom(rs.getString("prenom"));
-                utilisateur.setEmail(rs.getString("email"));
-                utilisateur.setTelephone(rs.getString("telephone"));
-                utilisateur.setRue(rs.getString("rue"));
-                utilisateur.setCodePostal(rs.getString("code_postal"));
-                utilisateur.setVille(rs.getString("ville"));
-                utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
-                
-                categorie.setNoCategorie(rs.getInt("no_categorie"));
-                categorie.setLibelle(rs.getString("libelle"));
-                
-                listesArticles.add(new ArticleVendu(
-                    rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
-                    rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
-                    rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
-                    categorie));
+		try(Connection cnx = ConnectionProvider.getConnection())
+		{
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				
+				Utilisateur utilisateur = new Utilisateur();
+				Categorie categorie = new Categorie();
 
-           }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            BusinessException businessException = new BusinessException();
-            businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
-            throw businessException;
-        }
-        
-        return listesArticles;
-    }
+				utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setNom(rs.getString("nom"));
+				utilisateur.setPrenom(rs.getString("prenom"));
+				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setTelephone(rs.getString("telephone"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+				
+				categorie.setNoCategorie(rs.getInt("no_categorie"));
+				categorie.setLibelle(rs.getString("libelle"));
+				
+				listesArticles.add(new ArticleVendu(
+					rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
+					rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+					rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
+					categorie));
+				
+				
+
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+			throw businessException;
+		}
+		
+		return listesArticles;
+	}
 	
 	@Override
 	public void insertArticle(ArticleVendu articleVendu) throws BusinessException {
@@ -161,8 +120,9 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				pstmt.setString(2, articleVendu.getDescription());
 				pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
 				pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
-				pstmt.setInt(5, articleVendu.getUtilisateur().getNoUtilisateur());
-				pstmt.setInt(6, articleVendu.getCategorie().getNoCategorie());
+				pstmt.setInt(5,articleVendu.getMiseAPrix());
+				pstmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
+				pstmt.setInt(7, articleVendu.getCategorie().getNoCategorie());
 				pstmt.executeUpdate();
 				
 				ResultSet rs = pstmt.getGeneratedKeys();
@@ -466,29 +426,41 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	
 	@Override
 	public ArticleVendu selectArticleById(int idArticle) throws BusinessException {
-		ArticleVendu articleVendu = new ArticleVendu();
-		if(idArticle==0)
-		{
-			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.LECTURE_UTILISATEUR_INEXISTANTE);
-			throw businessException;
-		}
+		ArticleVendu articleVendu = null;
+		Utilisateur utilisateur = new Utilisateur();
+		Categorie categorie = new Categorie();
+		
 		try(Connection cnx = ConnectionProvider.getConnection())
 		{
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_BY_ID);
 			pstmt.setInt(1, idArticle);
 			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+			utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+			utilisateur.setPseudo(rs.getString("pseudo"));
+			utilisateur.setNom(rs.getString("nom"));
+			utilisateur.setPrenom(rs.getString("prenom"));
+			utilisateur.setEmail(rs.getString("email"));
+			utilisateur.setTelephone(rs.getString("telephone"));
+			utilisateur.setRue(rs.getString("rue"));
+			utilisateur.setCodePostal(rs.getString("code_postal"));
+			utilisateur.setVille(rs.getString("ville"));
+			utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 
 			
+			categorie.setNoCategorie(rs.getInt("no_categorie"));
+			categorie.setLibelle(rs.getString("libelle"));
+
 			
-			articleVendu.setNomArticle(rs.getString("nom_article"));
-			articleVendu.setDescription(rs.getString("description"));
-			articleVendu.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
-			articleVendu.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
-			articleVendu.setMiseAPrix(rs.getInt("date_fin_encheres"));
-			articleVendu.setPrixVente(rs.getInt("prix_vente"));
-			articleVendu.setUtilisateur(selectUtilisateurById(articleVendu.getIdUtilisateur()));
+			articleVendu=new ArticleVendu(
+				rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
+				rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+				rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
+				categorie);
 			
+			}
 		}
 		catch(Exception e)
 		{
@@ -498,7 +470,6 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 			throw businessException;
 		}
 
-		
 		return articleVendu;
 	}
 	
@@ -534,6 +505,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 
 
 
+	
 	/* ----------- ENCHERES --------------*/
 
 	@Override
@@ -586,8 +558,8 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		}
 		
 	}
-	
-	
+
+
 	
 	@Override
 	public Categorie selectCategorieById(int idCategorie) throws BusinessException {
@@ -620,19 +592,69 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 		
 		return categorie;
 	}
-	
-		@Override
-		public List<Categorie> selectAllCategories() throws BusinessException {
-			List<Categorie> listeCategorie = new ArrayList<>();
+
+	 @Override
+	    public List<Categorie> selectAllCategories() throws BusinessException {
+	        List<Categorie> listeCategorie = new ArrayList<>();
+	        try(Connection cnx = ConnectionProvider.getConnection())
+	        {
+	            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+	            ResultSet rs = pstmt.executeQuery();
+	            while(rs.next())
+	            {
+	                listeCategorie.add(new Categorie(
+	                    rs.getInt("no_categorie"),  rs.getString("libelle")));
+	                
+	            }
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            BusinessException businessException = new BusinessException();
+	            businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+	            throw businessException;
+	        }
+	        return listeCategorie;
+	    }
+
+	 
+	 @Override
+		public List<ArticleVendu> selectAllArticleByCategorie(int idCategorie) throws BusinessException {
+			List<ArticleVendu> listesArticles = new ArrayList<ArticleVendu>();
+			Utilisateur utilisateur = new Utilisateur();
+			Categorie categorie = new Categorie();
 			try(Connection cnx = ConnectionProvider.getConnection())
 			{
-				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_CATEGORIES);
+				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES_BY_CATEGORIE);
+				pstmt.setInt(1, idCategorie);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next())
 				{
-					listeCategorie.add(new Categorie(
-						rs.getInt("no_categorie"),  rs.getString("libelle")));
 					
+					
+
+					utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+					
+					utilisateur.setPseudo(rs.getString("pseudo"));
+					utilisateur.setNom(rs.getString("nom"));
+					utilisateur.setPrenom(rs.getString("prenom"));
+					utilisateur.setEmail(rs.getString("email"));
+					utilisateur.setTelephone(rs.getString("telephone"));
+					utilisateur.setRue(rs.getString("rue"));
+					utilisateur.setCodePostal(rs.getString("code_postal"));
+					utilisateur.setVille(rs.getString("ville"));
+					utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+					
+					categorie.setNoCategorie(rs.getInt("no_categorie"));
+					categorie.setLibelle(rs.getString("libelle"));
+					
+					listesArticles.add(new ArticleVendu(
+						rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
+						rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
+						categorie));
+					
+
 				}
 			}
 			catch(Exception e)
@@ -642,10 +664,112 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
 				throw businessException;
 			}
-			return listeCategorie;
+			
+			return listesArticles;
 		}
-
 	
+	 @Override
+	    public List<ArticleVendu> selectAllArticleByUser(int idUtilisateur) throws BusinessException {
+	        List<ArticleVendu> listesArticles = new ArrayList<ArticleVendu>();
+
+	        try(Connection cnx = ConnectionProvider.getConnection())
+	        {
+	            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ARTICLES_UTILISATEUR);
+	            pstmt.setInt(1, idUtilisateur);
+	            ResultSet rs = pstmt.executeQuery();
+	            while(rs.next())
+	            {
+	            	
+	    	        Utilisateur utilisateur = new Utilisateur();
+	    	        Categorie categorie = new Categorie();
+	    	        
+	               utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+	                utilisateur.setPseudo(rs.getString("pseudo"));
+	                utilisateur.setNom(rs.getString("nom"));
+	                utilisateur.setPrenom(rs.getString("prenom"));
+	                utilisateur.setEmail(rs.getString("email"));
+	                utilisateur.setTelephone(rs.getString("telephone"));
+	                utilisateur.setRue(rs.getString("rue"));
+	                utilisateur.setCodePostal(rs.getString("code_postal"));
+	                utilisateur.setVille(rs.getString("ville"));
+	                utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+	                
+	                categorie.setNoCategorie(rs.getInt("no_categorie"));
+	                categorie.setLibelle(rs.getString("libelle"));
+	                
+	                listesArticles.add(new ArticleVendu(
+	                    rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
+	                    rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+	                    rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
+	                    categorie));
+
+
+
+	          }
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            BusinessException businessException = new BusinessException();
+	            businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+	            throw businessException;
+	        }
+	        
+	        return listesArticles;
+	    }
+	 
+	 @Override
+	    public List<Enchere> selectAllEncheresByUser(int idUtilisateur) throws BusinessException {
+	        List<Enchere> listesEncheres = new ArrayList<Enchere>();
+
+	        try(Connection cnx = ConnectionProvider.getConnection())
+	        {
+	            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ALL_ENCHERES_USER);
+	            pstmt.setInt(1, idUtilisateur);
+	            ResultSet rs = pstmt.executeQuery();
+	            while(rs.next())
+	            {
+	            	
+	    	        Utilisateur utilisateur = new Utilisateur();
+	    	        ArticleVendu article = null;
+	    	        Categorie categorie = new Categorie();
+	    	        
+	    	        utilisateur.setNoUtilisateur(rs.getInt("no_utilisateur"));
+	                utilisateur.setPseudo(rs.getString("pseudo"));
+	                utilisateur.setNom(rs.getString("nom"));
+	                utilisateur.setPrenom(rs.getString("prenom"));
+	                utilisateur.setEmail(rs.getString("email"));
+	                utilisateur.setTelephone(rs.getString("telephone"));
+	                utilisateur.setRue(rs.getString("rue"));
+	                utilisateur.setCodePostal(rs.getString("code_postal"));
+	                utilisateur.setVille(rs.getString("ville"));
+	                utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
+	                
+	                categorie.setNoCategorie(rs.getInt("no_categorie"));
+	                categorie.setLibelle(rs.getString("libelle"));
+	                
+	                article=new ArticleVendu(
+	                    rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
+	                    rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
+	                    rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
+	                    categorie);
+	                
+	                listesEncheres.add(new Enchere(
+		                    rs.getInt("no_enchere"), rs.getDate("date_enchere").toLocalDate(),
+		                    rs.getInt("montant_enchere"), utilisateur ,article));   
+
+	          }
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            BusinessException businessException = new BusinessException();
+	            businessException.ajouterErreur(CodesResultatDAL.LECTURE_LISTES_ECHEC);
+	            throw businessException;
+	        }
+	        
+	        return listesEncheres;
+	    }
 //	@Override
 //	public Enchere selectEnchere(int noEnchere) throws BusinessException {
 //		
