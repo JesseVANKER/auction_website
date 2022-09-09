@@ -10,11 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Sign Up</h1>
+  <header>
+    <h1 id='title'>INSCRIPTION</h1>
 <br>
-<br>
-
-<h2>Mon profil</h2>
+</header>
 
 
 <%
@@ -33,9 +32,9 @@
 			}
 		%>
 
+<div id='survey-form'>
 
-
-<form id='survey-form' action="<%=request.getContextPath()%>/ServletSignUp" method="post">
+<form  action="<%=request.getContextPath()%>/ServletSignUp" method="post">
         <div class='form-input'>
            
 
@@ -89,15 +88,24 @@
           <input type="text" id="confirmation" name="confirmation" placeholder='Confirmation' class='form-input-size' required >
         </div>
 
-        <div class='form-input'>
-          <button type='submit' id='submit'>Envoyer</button>
-        </div>
+            <button type='submit' id='submit'>
+              <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                  </svg>
+                </div>
+              </div>
+              <span>Sign Up</span>
+            </button>
         
-        <div class='form-input'>
-          <button id="annuler" href="<%=request.getContextPath()%>">Annuler</button>
-         </div>
 
   </form>
+		<a class="nav-link" id="retour" href="<%=request.getContextPath()%>">Continuer sans créer de compte</a>
+</div>
+
+
 
 </body>
 </html>

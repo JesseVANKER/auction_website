@@ -92,7 +92,7 @@ public class ServletLogin extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.setAttribute("utilisateurCourant", utilisateurCourant);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("");
 			rd.forward(request, response);
 			
 		}
