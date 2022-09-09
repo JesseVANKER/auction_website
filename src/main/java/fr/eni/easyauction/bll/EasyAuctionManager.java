@@ -129,12 +129,6 @@ public class EasyAuctionManager {
 		 */
 
 	
-
-	
-	public List<ArticleVendu> selectionnerTousLesArticlesByCategorie(int idCategorie) throws BusinessException{
-		return this.easyAuctionDAO.selectAllArticleByCategorie(idCategorie);
-	}
-	
 	/*
 	public List<ListeCourse> selectionnerListes() throws BusinessException
 	{
