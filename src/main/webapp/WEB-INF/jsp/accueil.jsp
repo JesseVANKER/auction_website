@@ -6,6 +6,7 @@
 <%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
 <%@page import="fr.eni.easyauction.bo.Enchere"%>
 <%@page import="fr.eni.easyauction.bo.ArticleVendu"%>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,45 +72,41 @@
         
          
         
-        <table>
-            <thead>
-                <tr>
-                    <td>Numéro Enchere </td>
-                    <td>Date Enchere </td>
-                    <td>Montant Enchere </td>
-                    <td> Utilisateur</td>
-                </tr>
-            </thead>
+
                 <%
                     List<ArticleVendu> listeArticleVendu = (List<ArticleVendu>) request.getAttribute("listeArticleVendu");
                     if(listeArticleVendu!=null && listeArticleVendu.size()>0)
                     {
                 %>
-                        <tbody>
+
                             <%
                             for(ArticleVendu article : listeArticleVendu)
                             {
                             %>
-                                <tr>
-                                    
-                                    <td><%=article.getNomArticle()%> </td>
-                                    <td><%=article.getDateFinEncheres()%> </td>
-                                    <td><%=article.getMiseAPrix()%> </td>
-                                    <td><%=article.getUtilisateur().getPseudo()%> </td>
+
+                                 
+                        <div class="container">
+					      <div class="row g-3">
+					        <div class="col-12 col-md-6 col-lg-4">
+					          <div class="card" >
+					            <img src="htmlcss2reduce.jpg" class="card-img-top" alt="...">
+					            <div class="card-body">
+					              <h5 class="card-title"><%=article.getNomArticle()%> </h5>
+					              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					              <a href="#" class="btn btn-primary">Go somewhere</a>
+					            </div>
+					          </div>
+					        </div>
+			           	 </div>
+		            </div>
                                 
                                     
                                 
-                                </tr>
-                            
-                        </tbody>
                 <%
                             }
                     }
                 %>
     
-            
-            
-        </table>
                       
 
 
