@@ -57,10 +57,7 @@ public class EasyAuctionManager {
 			utilisateur.setVille(ville);
 			this.easyAuctionDAO.insertUtilisateur(utilisateur);
 			
-			
-		
-		}else
-		{
+		} else {
 			throw businessException;
 		}
 	}
