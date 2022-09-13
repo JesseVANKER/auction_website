@@ -57,6 +57,12 @@ public class ServletAccueil extends HttpServlet {
 			listeArticleVendu = easyAuctionManager.selectionnerTousLesArticles();
 			listeCategorie = easyAuctionManager.selectionnerToutesCategories();
 
+			if(rechercheNull && categorieNull) {
+				request.setAttribute("listeArticleVendu", listeArticleVendu);
+			}
+			
+			
+			
 			//condition avec recherche sans catégorie
 			if (rechercheNotNull && categorieNull) {
 
@@ -67,6 +73,7 @@ public class ServletAccueil extends HttpServlet {
 
 					}
 				}
+				request.setAttribute("listeArticleVendu", listeArticleRecherche);
 			}
 			//condition sans recherche et avec catégorie
 			if (rechercheNull && categorieNotNull) {
@@ -79,7 +86,7 @@ public class ServletAccueil extends HttpServlet {
 				}
 
 				listeArticleCategorie = easyAuctionManager.selectionnerTousLesArticlesByCategorie(idCategorie);
-
+				request.setAttribute("listeArticleVendu", listeArticleCategorie);
 			}
 			//condition avec recherche et avec catégorie
 			if (rechercheNotNull && categorieNotNull) {
@@ -97,6 +104,7 @@ public class ServletAccueil extends HttpServlet {
 						}
 					}
 				}
+				request.setAttribute("listeArticleVendu", listeArticleRechercheEtCategorie);
 			}
 
 		} catch (BusinessException e) {
@@ -104,18 +112,13 @@ public class ServletAccueil extends HttpServlet {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 		}
 
-		// attribut des listes
-		request.setAttribute("listeArticleRecherche", listeArticleRecherche);
-		request.setAttribute("listeArticleCategorie", listeArticleCategorie);
 		request.setAttribute("listeCategories", listeCategorie);
-		request.setAttribute("listeArticleVendu", listeArticleVendu);
-		request.setAttribute("listeArticleRechercheEtCategorie", listeArticleRechercheEtCategorie);
-
+		
 		// supprimer le cache
 		response.setDateHeader("Expires", 0);
 
 		// redirection vers la jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 
 		rd.forward(request, response);
 

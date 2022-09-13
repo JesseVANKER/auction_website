@@ -10,9 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <body>
+  <header>
+    <h1 id='title'>INSCRIPTION</h1>
+<br>
+</header>
 
-    <%
+
+<%
 			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
 			if(listeCodesErreur!=null)
 			{

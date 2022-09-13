@@ -31,7 +31,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	
 	private static final String SELECT_ALL_ENCHERES_USER = "SELECT * FROM ENCHERES e LEFT JOIN UTILISATEURS u ON  e.no_utilisateur = u.no_utilisateur LEFT JOIN ARTICLES_VENDUS a ON  a.no_article = e.no_article LEFT JOIN CATEGORIES c ON a.no_categorie = c.no_categorie LEFT JOIN RETRAITS r ON a.no_article = r.no_article where a.no_utilisateur=? ORDER BY no_enchere DESC;";
 	private static final String SELECT_ALL_ENCHERES_ID_ARTICLE = "SELECT * FROM ENCHERES e LEFT JOIN UTILISATEURS u ON  e.no_utilisateur = u.no_utilisateur LEFT JOIN ARTICLES_VENDUS a ON  a.no_article = e.no_article LEFT JOIN CATEGORIES c ON a.no_categorie = c.no_categorie LEFT JOIN RETRAITS r ON a.no_article = r.no_article where a.no_article=? ORDER BY montant_enchere DESC;";
-	private static final String INSERT_ARTICLE = "insert into ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, no_utilisateur, no_categorie) values(?,?,?,?,?,?,?);";
+	private static final String INSERT_ARTICLE = "insert into ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, no_utilisateur, no_categorie, url_image) values(?,?,?,?,?,?,?,?);";
 	private static final String DELETE_ARTICLE = "delete from ARTICLES_VENDUS where no_article=?";
 	private static final String INSERT_UTILISATEUR = "insert into UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) values(?,?,?,?,?,?,?,?,?,?,?);";
 	
@@ -40,8 +40,8 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	private static final String DELETE_UTILISATEUR = "delete from UTILISATEURS where no_utilisateur=?";
 	private static final String SELECT_ALL_USER = "SELECT * from UTILISATEURS";
 	private static final String SELECT_ALL_ENCHERE ="SELECT * FROM ENCHERES";
-
-
+	
+	
 	private static final String INSERT_ENCHERE = "insert into ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) values(?,?,?,?);";
 	private static final String SELECT_CATEGORIE_BY_ID = "SELECT  libelle FROM CATEGORIES WHERE no_categorie=?";
 	private static final String SELECT_ALL_CATEGORIES = "SELECT * FROM CATEGORIES;";
@@ -84,7 +84,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 					rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
 					rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 					rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
-					categorie));
+					categorie, rs.getString("url_image")));
 				
 				
 
@@ -125,6 +125,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				pstmt.setInt(5,articleVendu.getMiseAPrix());
 				pstmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
 				pstmt.setInt(7, articleVendu.getCategorie().getNoCategorie());
+				pstmt.setString(8, articleVendu.getImage());
 				pstmt.executeUpdate();
 				
 				ResultSet rs = pstmt.getGeneratedKeys();
@@ -372,7 +373,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 				rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), 
 				rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 				rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
-				categorie, listeEnchereArticle);
+				categorie, listeEnchereArticle, rs.getString("url_image"));
 			}
 		}
 		catch(Exception e)
@@ -584,7 +585,7 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	                    rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
 	                    rs.getDate("date_debut_encheres").toLocalDate(), rs.getDate("date_fin_encheres").toLocalDate(),
 	                    rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur,
-	                    categorie));
+	                    categorie, rs.getString("url_image")));
 
 
 
@@ -653,6 +654,8 @@ public class EasyAuctionDAOJdbcImpl implements EasyAuctionDAO {
 	        
 	        return listesEncheres;
 	    }
+
+	 
 	 
 	 @Override
 	    public List<Enchere> selectAllEncheresByArticle(int idArticle) throws BusinessException {
