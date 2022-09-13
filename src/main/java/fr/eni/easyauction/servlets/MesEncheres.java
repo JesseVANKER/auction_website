@@ -32,16 +32,17 @@ public class MesEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EasyAuctionManager easyAuctionManager = new EasyAuctionManager();
 		List<Enchere> listeEnchereByUser=null;
-		
         HttpSession session = request.getSession();
         Utilisateur utilisateurCourant = (Utilisateur) session.getAttribute("utilisateurCourant");
-        
 		try {
+
 			listeEnchereByUser = easyAuctionManager.selectionnerTousLesEncheresByUser(utilisateurCourant.getNoUtilisateur());
 			
-			int noArticle = listeEnchereByUser.get(0).getArticleVendu().getNoArticle();
-			
-			System.out.println(noArticle);
+
+			for(Enchere enchere : listeEnchereByUser) {
+				
+				enchere.getArticleVendu().setListeEnchere(easyAuctionManager.selectionnerTousLesEncheresByArticle(enchere.getArticleVendu().getNoArticle()));
+			}
 			request.setAttribute("listeEnchereByUser", listeEnchereByUser);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/mesencheres.jsp");

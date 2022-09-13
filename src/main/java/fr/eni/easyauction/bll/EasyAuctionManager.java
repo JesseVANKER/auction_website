@@ -135,13 +135,33 @@ public class EasyAuctionManager {
 		 * @throws BusinessException 
 		 */
 		public ArticleVendu selectionnerArticleById(int idArticle) throws BusinessException {
-
-			return this.easyAuctionDAO.selectArticleById(idArticle);
+			
+		 	List<Enchere> listeEnchereArticle = this.easyAuctionDAO.selectAllEncheresByArticle(idArticle);
+		 	
+			return this.easyAuctionDAO.selectArticleById(idArticle, listeEnchereArticle);
 		}
 
 		public List<Enchere> selectionnerTousLesEncheresByUser(int noUtilisateur) throws BusinessException {
 
 			return this.easyAuctionDAO.selectAllEncheresByUser(noUtilisateur);
+		}
+
+		/**
+		 * @param nouvelEnchere
+		 * @throws BusinessException 
+		 */
+		public void ajouterEnchere(Enchere nouvelEnchere) throws BusinessException {
+			
+			this.easyAuctionDAO.insertEnchere(nouvelEnchere);
+		}
+
+		/**
+		 * @param noArticle
+		 * @return
+		 * @throws BusinessException 
+		 */
+		public List<Enchere> selectionnerTousLesEncheresByArticle(int noArticle) throws BusinessException {
+			return this.easyAuctionDAO.selectAllEncheresByArticle(noArticle);
 		}
 
 		/**

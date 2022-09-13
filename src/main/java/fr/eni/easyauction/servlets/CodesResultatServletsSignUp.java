@@ -87,6 +87,8 @@ public abstract class CodesResultatServletsSignUp {
 
 	public static final int PRIX_DEPART_ERREUR = 30018;
 	
-	
+	public static final int DEBUT_VENTE_NON_COMMENCE = 30019;
+
+	public static final int VENTE_TERMINE = 30020;
 
 }

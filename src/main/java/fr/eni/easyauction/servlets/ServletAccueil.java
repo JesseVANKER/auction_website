@@ -115,7 +115,7 @@ public class ServletAccueil extends HttpServlet {
 		response.setDateHeader("Expires", 0);
 
 		// redirection vers la jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/acceuil.jsp");
 
 		rd.forward(request, response);
 

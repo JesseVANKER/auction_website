@@ -26,16 +26,14 @@ public interface EasyAuctionDAO {
 	 /* ----------- ARTICLES --------------*/
 	List<ArticleVendu> selectAllArticle() throws BusinessException;
 	void insertArticle(ArticleVendu articleVendu) throws BusinessException;
-	void updatePrixArticle(int prixVente, int idArticle) throws BusinessException;
 	void deleteArticle(int idArticle) throws BusinessException;
-	ArticleVendu selectArticleById(int idArticle) throws BusinessException;
+	ArticleVendu selectArticleById(int idArticle, List<Enchere> listeEnchereArticle) throws BusinessException;
 	List<ArticleVendu> selectAllArticleByUser(int idUtilisateur) throws BusinessException;
 	
 	 /* ----------- UTILISATEURS --------------*/
 	void insertUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void updateUtilisateur(Utilisateur utilisateur) throws BusinessException;
 	void deleteUtilisateur(int idUtilisateur) throws BusinessException;
-	Utilisateur selectUtilisateurById(int idUtilisateur) throws BusinessException;
 	List<Utilisateur> selectAllUtilisateur() throws BusinessException;
 
 
@@ -45,11 +43,9 @@ public interface EasyAuctionDAO {
 	/* ----------- ENCHERES --------------*/
 	void insertEnchere(Enchere enchere) throws BusinessException;
 	List<Enchere> selectAllEnchere() throws BusinessException;
-	Enchere selectEnchereById(int idEnchere) throws BusinessException;
-	List<Enchere> selectAllEnchereById(int idEnchere) throws BusinessException;
 	
 	List<Enchere> selectAllEncheresByUser(int idUtilisateur) throws BusinessException;
-	
+	List<Enchere> selectAllEncheresByArticle(int idUtilisateur) throws BusinessException;
 	
 	/* ----------- CATEGORIES --------------*/
 	Categorie selectCategorieById(int idUtilisateur) throws BusinessException;
@@ -63,6 +59,18 @@ public interface EasyAuctionDAO {
 	 * @return
 	 * @throws BusinessException
 	 */
+	/**
+	 * @param idUtilisateur
+	 * @return
+	 * @throws BusinessException
+	 */
+	/**
+	 * @param idArticle
+	 * @param listeEnchereArticle
+	 * @return
+	 * @throws BusinessException
+	 */
+
 
 	
 	/**

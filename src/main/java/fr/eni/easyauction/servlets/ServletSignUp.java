@@ -36,7 +36,7 @@ public class ServletSignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
 		rd.forward(request, response);
 	}
 
@@ -141,7 +141,7 @@ public class ServletSignUp extends HttpServlet {
 			// Je renvoie les codes d'erreurs
 			// Et je n'enregistre pas l'utilisateur
 			request.setAttribute("listeCodesErreur", listeCodesErreur);
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
 			rd.forward(request, response);
 		} 
 		else {
@@ -157,7 +157,7 @@ public class ServletSignUp extends HttpServlet {
 				// Sinon je retourne à la page d'ajout pour indiquer les problèmes:
 				e.printStackTrace();
 				request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
 				rd.forward(request, response);
 			}
 		}

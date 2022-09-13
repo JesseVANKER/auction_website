@@ -1,14 +1,19 @@
 @charset "UTF-8";
 
+
+
 html{
-  font-size: 14px;
+  font-size: 15px;
 }
 
 body{
+  background: url("../img/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
   padding: 50px;
-  
-background: rgb(222,185,146);
-background: linear-gradient(90deg, rgba(222,185,146,1) 0%, rgba(5,22,34,1) 49%, rgba(222,185,146,1) 100%);
   margin: 0;
   font-family: sans-serif;
   color: white;
@@ -23,37 +28,48 @@ margin: 3.2rem auto 0 auto;
   body{
     padding: 0px;
   }
-.container{
-  max-width: 220px;
-}
+
 a{
   text-align: center !important;
 }
 }
 
-@media(min-width: 576px){
+@media(min-width: 650px){
   body{
     padding: 50px;
   }
 .container{
   max-width: 540px;
 }
+.form-input{
+  display: inline-block;
 }
-@media(min-width: 700px){
-  body{
-    padding: 50px 100px 100px;
-  }
-  a{
-    width:150px !important;
-  }
+.form-input-size{
+  
+  width: 100px;
+}
 }
 
-@media(min-width: 950px){
+
+@media(min-width: 1020px){
   body{
     padding: 50px 150px 150px;
   }
+  .container{
+    max-width: 720px
+  }
   a{
     width:150px !important;
+  }
+  .form-input{
+    display: inline-block;
+  }
+  #gauche{
+    padding-right: 95px;
+  }
+  .form-input-size{
+    
+    width: 150% !important;
   }
 }
 
@@ -65,14 +81,24 @@ a{
     max-width: 720px
   }
   a{
-    width:150px !important;
+    width:150px;
   }
-
+  .form-input{
+    display: inline-block;
+  }
+  #gauche{
+    padding-right: 95px;
+  }
+  .form-input-size{
+    
+    width: 150% !important;
+  }
 }
 
-header{
-  text-align: center;
+.header{
+  text-align: left;
   margin-bottom: 1.5rem;
+  margin-left: 30px;
 }
 
 h1{
@@ -87,21 +113,22 @@ text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5)
 }
 
 #survey-form{
-  background: #102f46;
-  padding: 2.3rem 0.5rem;
+  background: #040404;
+  padding: 2.5rem 1rem;
   border-radius: 1rem;
 }
 
 .form-input{
   margin: 0 2.5rem 1.2rem 2rem;
+ 
 }
 
 .form-input-size{
-  display: block;
+  
   width: 100%;
   height: 1.5rem;
   padding: 0.3rem 0.4rem;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   outline: 0;
   border-style: none;
   margin-top: 0.4rem;  
@@ -112,8 +139,7 @@ p{
  }
  
  label {
-  display: flex;
-  align-items: center;
+  
   font-size: 1.125rem;
   margin-bottom: 0.5rem;
  }
@@ -192,6 +218,62 @@ a:hover::before{
   width: 100%;
 }
 
+
+.toggle {
+  cursor: pointer;
+  display: flex;
+  margin: 20px 30% 0;
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 40px;
+  height: 21px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
+  content: "";
+}
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 3px;
+  left: 3.5px;
+  transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: #56c080;
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 21.5px;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 1px;
+  left: 5px;
+}
+
+
 /* From uiverse.io by @adamgiebl */
 button {
   font-family: inherit;
@@ -248,4 +330,33 @@ button {
   }
  }
  
+ a.button4{
+  font-family: inherit;
+  font-size: 20px;
+  padding: 0.7em 1em;
+  display: flex;
+  align-items: center;
+  border: none;
+  overflow: hidden;
+  transition: all 0.2s;
+  margin: 40px auto 5px;
+  border:0.16em solid rgba(255,255,255,0);
+  border-radius:16px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color:#FFFFFF !important;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align:center;
+  transition: all 0.2s;
+  }
+  a.button4:hover{
+  border-color: rgba(255,255,255,1);
+  }
+  @media all and (max-width:30em){
+  a.button4{
+  display:block;
+  margin:0.2em auto;
+  }
+  }
  
