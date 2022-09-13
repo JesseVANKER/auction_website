@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
+<%@page import="java.util.List"%>
+<%@page import="fr.eni.easyauction.bo.ArticleVendu"%>
 <!DOCTYPE html>
 <html>
 <head>

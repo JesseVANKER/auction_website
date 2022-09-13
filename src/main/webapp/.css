@@ -1,0 +1,357 @@
+@charset "UTF-8";
+
+html{
+  font-size: 15px;
+}
+
+body{
+  background: url("../img/back.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  padding: 50px;
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+}
+
+.container{
+width: 100%;
+margin: 1.2rem auto 0 auto;
+}
+
+@media(min-width: 250px){
+  body{
+    padding: 0px;
+  }
+
+a{
+  text-align: center !important;
+}
+}
+
+@media(min-width: 650px){
+  body{
+    padding: 50px;
+  }
+.container{
+  max-width: 540px;
+}
+.form-input{
+  display: inline-block;
+}
+.form-input-size{
+  
+  width: 100px;
+}
+}
+
+
+@media(min-width: 1020px){
+  body{
+    padding: 50px 150px 150px;
+  }
+  .container{
+    max-width: 720px 
+  }
+  a{
+    width:150px !important;
+  }
+  .form-input{
+    display: inline-block;
+  }
+  #gauche{
+    padding-right: 95px;
+  }
+  .form-input-size{
+    
+    width: 150% !important;
+  }
+}
+
+@media(min-width: 1200px){
+    body{
+      padding: 50px 200px 200px 200px;
+    }
+  .container{
+    max-width: 720px
+  }
+  a{
+    width:150px;
+  }
+  .form-input{
+    display: inline-block;
+  }
+  #gauche{
+    padding-right: 95px;
+  }
+  .form-input-size{
+    
+    width: 150% !important;
+  }
+}
+
+.header{
+  text-align: left;
+  margin-bottom: 1.5rem;
+  margin-left: 30px;
+}
+
+h1{
+  padding-top: 0px;
+font-weight: 400;
+}
+
+#description{
+font-weight: 200;
+font-style: italic;
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5)
+}
+
+#survey-form{
+  background: #040404;
+  padding: 2.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.form-input{
+  margin: 0 2.5rem 1.2rem 2rem;
+ 
+}
+
+.form-input-size{
+  
+  width: 100%;
+  height: 1.5rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 0.4rem;
+  outline: 0;
+  border-style: none;
+  margin-top: 0.4rem;  
+}
+
+p{
+  font-size: 1.12rem;
+ }
+ 
+ label {
+  
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+ }
+ 
+#title{
+  color: #f4db7d;
+}
+ textarea{
+  width: 100%;
+  min-height: 6rem;
+  resize: vertical;
+  padding: 0.5rem 0 0 0.5rem;
+ }
+ /*
+ #submit{
+  width: 100%;
+  padding: 0.8rem;
+  background: rgb(7, 173, 7);
+  color: white;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  border: none;
+ }
+*/
+ #annuler{
+  width: 100%;
+  padding: 0.8rem;
+  background: #f4db7d;
+  color: white;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  border: none;
+ }
+ 
+
+
+
+.toggle {
+  cursor: pointer;
+  display: flex;
+  margin: 20px 30% 0;
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 40px;
+  height: 21px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
+  content: "";
+}
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 3px;
+  left: 3.5px;
+  transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: #56c080;
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 21.5px;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 1px;
+  left: 5px;
+}
+
+
+/* From uiverse.io by @adamgiebl */
+.button1 {
+  font-family: inherit;
+  font-size: 20px;
+  background: #f4db7d;
+  color: rgb(0, 0, 0);
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  margin: 40px auto 5px;
+  width: 140px;
+  cursor: pointer;
+ }
+ 
+ .button1 span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+ }
+ 
+ .button1 svg {
+  
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+ }
+ 
+ .button1:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+ }
+ 
+ .button1:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+ }
+ 
+ .button1:hover span {
+  transform: translateX(5em);
+ }
+ 
+ .button1:active {
+  transform: scale(0.95);
+ }
+ 
+ @keyframes fly-1 {
+  from {
+   transform: translateY(0.1em);
+  }
+ 
+  to {
+   transform: translateY(-0.1em);
+  }
+ }
+ .btn-2,
+.btn-2 *,
+.btn-2 :after,
+.btn-2 :before,
+.btn-2:after,
+.btn-2:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-2 {
+  
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-family: inherit;
+  margin: 20px auto 5px;
+  padding: 0.7em 1.2em !important;
+  width: 140px;
+  font-size: 20px;
+  font-weight: 100 !important;
+  border-radius: 16px;
+  background: rgb(245, 115, 115);
+}
+.btn-2:hover {
+  -webkit-animation: headShake 0.8s;
+  animation: headShake 0.8s;
+}
+@-webkit-keyframes headShake {
+  0% {
+    transform: translateX(0);
+  }
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+  18.5% {
+    transform: translateX(5px) rotateY(7deg);
+  }
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+  43.5% {
+    transform: translateX(2px) rotateY(3deg);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
+@keyframes headShake {
+  0% {
+    transform: translateX(0);
+  }
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+  18.5% {
+    transform: translateX(5px) rotateY(7deg);
+  }
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+  43.5% {
+    transform: translateX(2px) rotateY(3deg);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}

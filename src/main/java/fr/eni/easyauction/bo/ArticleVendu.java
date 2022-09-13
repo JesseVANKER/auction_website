@@ -185,69 +185,13 @@ public class ArticleVendu {
 		this.categorie = categorie;
 		this.retrait = retrait;
 	}
-//	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-//			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur utilisateur
-//			) {
-//		super();
-//		this.noArticle = noArticle;
-//		this.nomArticle = nomArticle;
-//		this.description = description;
-//		this.dateDebutEncheres = dateDebutEncheres;
-//		this.dateFinEncheres = dateFinEncheres;
-//		this.miseAPrix = miseAPrix;
-//		this.prixVente = prixVente;
-//		this.etatVente = etatVente;
-//		this.utilisateur = utilisateur;
-//		
-//	}
+
 	public ArticleVendu() {
 		super();
 		
 		
 	}
 	
-	public ArticleVendu( String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int etatVente, Utilisateur utilisateur
-			) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.utilisateur = utilisateur;
-		
-	}
-
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int idUtilisateur, int idCategorie) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.idUtilisateur = idUtilisateur;
-		this.idCategorie = idCategorie;
-		
-	}
-	
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, int idUtilisateur, int idCategorie) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.idUtilisateur = idUtilisateur;
-		this.idCategorie = idCategorie;
-		
-	}
-
 
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
@@ -263,6 +207,23 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 		this.utilisateur = utilisateur;
 		this.categorie = categorie;
+		
+	}
+	
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente,  Utilisateur utilisateur,
+			 Categorie categorie,List<Enchere> listeEnchere ) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.ListeEnchere=listeEnchere;
 		
 	}
 	
