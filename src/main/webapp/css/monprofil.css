@@ -355,10 +355,7 @@ p{
   }
   50% {
     transform: translateX(0);
-   
-    
   }
-}
 
 div 
 {
@@ -372,4 +369,3 @@ input
 body{background-color:#040404;}
 
 p{text-align: center;}
-
