@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="fr.eni.easyauction.messages.LecteurMessage"%>
 <%@page import="java.util.List"%>
+<%@page import="fr.eni.easyauction.bo.Utilisateur"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
   <header>
-    <h1 id='title'>INSCRIPTION</h1>
+    <h1 id='title'>Profil Utilisateur</h1>
 <br>
 </header>
 
@@ -32,55 +33,58 @@
 			}
 		%>
 
-<div id='survey-form'>
-
+<div id='survey-form' >
+<%
+           		Utilisateur autreUilisateur= (Utilisateur) request.getAttribute("autreUtilisateur");
+           %>
 
         <div class='form-input'>
-           
-
-        <label for="pseudo">Pseudo</label>
-            
+        <label for="pseudo">pseudo :<p>&emsp; <%=autreUilisateur.getPseudo()%> </p></label>    
         </div>
+        
+        <div class='form-input'>
+          <label for="nom">Nom : <p>&emsp; <%=autreUilisateur.getNom()%> </p></label>
+          <p> </p>
+        </div>
+        
+         <div class='form-input'>
+            <label for="prenom">Prénom : <p>&emsp; <%=autreUilisateur.getPrenom()%> </p></label>
+            <p> </p>
+        </div>
+        
 
         <div class='form-input'>
-          <label for="email">Email</label>
+          <label for="email">Email : <p>&emsp; <%=autreUilisateur.getEmail()%> </p></label>
           <p> </p>
         </div>
 
         <div class='form-input'>
-          <label for="nom">Nom</label>
-          <p> </p>
-        </div>
-
-        <div class='form-input'>
-            <label for="prenom">Prénom</label>
+            <label for="telephone">Téléphone : <p>&emsp; <%=autreUilisateur.getTelephone()%> </p></label>
             <p> </p>
         </div>
 
         <div class='form-input'>
-            <label for="telephone">Téléphone</label>
-            <p> </p>
-        </div>
-
-        <div class='form-input'>
-          <label for="rue">Rue</label>
+          <label for="rue">Rue : <p>&emsp; <%=autreUilisateur.getRue()%> </p></label>
           <p> </p>
         </div>
-
+        
         <div class='form-input'>
-          <label for="ville">Ville</label>
-          <p> </p>
-        </div>
-
-        <div class='form-input'>
-          <label for="codePostal">Code postal</label>
+          <label for="codePostal">Code postal : <p>&emsp; <%=autreUilisateur.getCodePostal()%> </p></label>
            <p> </p>
         </div>
+        
+
+        <div class='form-input'>
+          <label for="ville">Ville : <p>&emsp; <%=autreUilisateur.getVille()%> </p></label>
+          <p> </p>
+        </div>
+
+    
 
         
 
             
-		<a class="nav-link" id="retour" href="/accueil">Accueil</a>
+		<a class="nav-link" id="retour" href="<%=request.getContextPath()%>/Accueil">Accueil</a>
 </div>
 
 

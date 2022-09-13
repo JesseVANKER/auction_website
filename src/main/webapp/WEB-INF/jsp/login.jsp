@@ -14,6 +14,9 @@
 </head>
 <body>
 
+
+
+
 <%
 			List<Integer> listeCodesErreur = (List<Integer>)request.getAttribute("listeCodesErreur");
 			if(listeCodesErreur!=null)

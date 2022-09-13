@@ -32,6 +32,7 @@ public class ArticleVendu {
 	private Retrait[] retrait = new Retrait[1];
 	private int idUtilisateur;
 	private int idCategorie;
+	private String image;
 	
 	
 	public int getIdUtilisateur() {
@@ -145,6 +146,15 @@ public class ArticleVendu {
 	public void setRetrait(Retrait[] retrait) {
 		this.retrait = retrait;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
@@ -212,7 +222,7 @@ public class ArticleVendu {
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int miseAPrix, int prixVente,  Utilisateur utilisateur,
-			 Categorie categorie,List<Enchere> listeEnchere ) {
+			 Categorie categorie,List<Enchere> listeEnchere, String image ) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -224,6 +234,7 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.categorie = categorie;
 		this.ListeEnchere=listeEnchere;
+		this.image=image;
 		
 	}
 	
@@ -237,6 +248,48 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.categorie = categorie;
 		
+	}
+
+	/**
+	 * Constructeur.
+	 * @param nomArticle2
+	 * @param description2
+	 * @param dateDebut
+	 * @param dateFin
+	 * @param prixDepart
+	 * @param utilisateur2
+	 * @param categorie2
+	 * @param fileName
+	 */
+	
+
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, Utilisateur utilisateur, Categorie categorie,String image ) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.image = image;
+	}
+	
+	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente,  Utilisateur utilisateur,
+			 Categorie categorie, String image) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.image = image;
 	}
 
 
