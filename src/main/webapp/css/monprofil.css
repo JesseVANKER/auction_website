@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 html{
   font-size: 15px;
 }
@@ -356,7 +354,7 @@ p{
   50% {
     transform: translateX(0);
   }
-
+}
 div 
 {
   width: 80%;
