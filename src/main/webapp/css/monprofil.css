@@ -367,3 +367,10 @@ input
 body{background-color:#040404;}
 
 p{text-align: center;}
+
+label{
+	min-width: 200px;
+	}
+
+div{width:100%;}input{width: 100%;}
+
